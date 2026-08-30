@@ -11,6 +11,8 @@ public class ModItems {
 
     public static final DeferredItem<Item> WILLOW_SAPLING = ITEMS.register("willow_sapling",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SWAMP_SAPLING = ITEMS.register("swamp_sapling",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

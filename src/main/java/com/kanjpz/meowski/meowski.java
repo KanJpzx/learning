@@ -49,8 +49,9 @@ public class meowski {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+        if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModItems.WILLOW_SAPLING);
+            event.accept(ModItems.SWAMP_SAPLING);
         }
     }
 
