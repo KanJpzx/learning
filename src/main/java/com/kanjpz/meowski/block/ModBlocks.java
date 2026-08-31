@@ -1,10 +1,12 @@
 package com.kanjpz.meowski.block;
 
+import com.kanjpz.meowski.block.custom.BlueBerryBushBlock;
 import com.kanjpz.meowski.item.ModItems;
 import com.kanjpz.meowski.meowski;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -21,7 +23,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
         DeferredRegister.createBlocks(meowski.MOD_ID);
 
-    public static final DeferredBlock<Block> WILLOW_LOG = registerBlock("willow_log",
+    public static final DeferredBlock<RotatedPillarBlock> WILLOW_LOG = registerBlock("willow_log",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
                     .mapColor(state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y
                             ? MapColor.WOOD
@@ -29,6 +31,9 @@ public class ModBlocks {
                     .strength(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
                     .ignitedByLava()));
+
+    public static final DeferredBlock<Block> BLUE_BERRY_BUSH = BLOCKS.register("blue_berry_bush",
+        () -> new BlueBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

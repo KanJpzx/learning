@@ -57,6 +57,7 @@ public class meowski {
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModItems.WILLOW_SAPLING);
             event.accept(ModItems.SWAMP_SAPLING);
+            event.accept(ModItems.BLUE_BERRIES);
         }
 
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
