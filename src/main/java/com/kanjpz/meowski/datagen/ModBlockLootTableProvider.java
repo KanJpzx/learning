@@ -33,7 +33,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.WILLOW_LOG.get());
         add(ModBlocks.BLUE_BERRY_BUSH.get(), this::createBerryBushDrops);
 
         // add(ModBlocks.RUBY_ORE.get(),         **single ore drop**
@@ -41,6 +40,17 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // add(ModBlocks.RUBY_ORE.get(),         **multi ore drop**
                 // block -> createMultipleOreDrops(ModBlocks.RUBY_ORE.get(), ModItems.RUBY.get(), 2,  5));
+
+
+        this.dropSelf(ModBlocks.WILLOW_LOG.get());
+        this.dropSelf(ModBlocks.WILLOW_WOOD.get());
+        this.dropSelf(ModBlocks.STRIPPED_WILLOW_WOOD.get());
+        this.dropSelf(ModBlocks.STRIPPED_WILLOW_LOG.get());
+        this.dropSelf(ModBlocks.WILLOW_PLANKS.get());
+        this.dropSelf(ModBlocks.WILLOW_SAPLING.get());
+
+        this.add(ModBlocks.WILLOW_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.WILLOW_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
     }
 
     private LootTable.Builder createBerryBushDrops(Block block) {
@@ -79,4 +89,3 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     }
 }
-

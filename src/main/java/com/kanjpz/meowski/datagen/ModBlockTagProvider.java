@@ -18,10 +18,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(ModBlocks.WILLOW_LOG.get());
-
         //tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 //.add(ModBlocks.RUBY_ORE.get());
+        this.tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.WILLOW_LOG.get())
+                .add(ModBlocks.WILLOW_WOOD.get())
+                .add(ModBlocks.STRIPPED_WILLOW_WOOD.get())
+                .add(ModBlocks.STRIPPED_WILLOW_LOG.get());
+
     }
 }

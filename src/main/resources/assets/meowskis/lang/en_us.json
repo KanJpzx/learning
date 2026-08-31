@@ -1,8 +1,13 @@
 {
-  "item.meowskis.willow_sapling": "Willow Sapling",
-  "item.meowskis.swamp_sapling": "Swamp Sapling",
   "item.meowskis.blue_berries": "Blue Berries",
 
-  "block.meowskis.willow_log": "Willow log",
-  "block.meowskis.blue_berry_bush": "Blue Berry Bush"
+  "block.meowskis.blue_berry_bush": "Blue Berry Bush",
+
+  "block.meowskis.willow_log": "Willow Log",
+  "block.meowskis.stripped_willow_log": "Stripped Willow Log",
+  "block.meowskis.willow_wood": "Willow Wood",
+  "block.meowskis.stripped_willow_wood": "Stripped willow wood",
+  "block.meowskis.willow_planks": "Willow Planks",
+  "block.meowskis.willow_sapling": "Willow Sapling",
+  "block.meowskis.willow_leaves": "Willow Leaves"
 }

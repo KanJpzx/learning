@@ -13,8 +13,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        basicItem(ModItems.SWAMP_SAPLING.get());
-        basicItem(ModItems.WILLOW_SAPLING.get());
         basicItem(ModItems.BLUE_BERRIES.get());
     }
 }
