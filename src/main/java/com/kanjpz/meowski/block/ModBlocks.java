@@ -4,6 +4,7 @@ import com.kanjpz.meowski.block.custom.BlueBerryBushBlock;
 import com.kanjpz.meowski.block.custom.ModFlammableRotatedPillarBlock;
 import com.kanjpz.meowski.item.ModItems;
 import com.kanjpz.meowski.meowski;
+import com.kanjpz.meowski.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
@@ -75,7 +76,7 @@ public class ModBlocks {
             });
 
     public static final DeferredBlock<Block> WILLOW_SAPLING = registerBlock("willow_sapling",
-            () -> new SaplingBlock(TreeGrower.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+            () -> new SaplingBlock(ModTreeGrowers.WILLOW, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
 
 

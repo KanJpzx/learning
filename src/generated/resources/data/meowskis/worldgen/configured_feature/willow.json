@@ -1,0 +1,68 @@
+{
+  "type": "minecraft:tree",
+  "config": {
+    "decorators": [],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "foliage_placer": {
+      "type": "minecraft:cherry_foliage_placer",
+      "corner_hole_chance": 0.5,
+      "hanging_leaves_chance": 0.65,
+      "hanging_leaves_extension_chance": 0.55,
+      "height": 4,
+      "offset": 2,
+      "radius": 3,
+      "wide_bottom_layer_hole_chance": 0.5
+    },
+    "foliage_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "meowskis:willow_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "force_dirt": false,
+    "ignore_vines": true,
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 1,
+      "lower_size": 0,
+      "upper_size": 2
+    },
+    "trunk_placer": {
+      "type": "minecraft:upwards_branching_trunk_placer",
+      "base_height": 8,
+      "can_grow_through": "#minecraft:leaves",
+      "extra_branch_length": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 5,
+        "min_inclusive": 4
+      },
+      "extra_branch_steps": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 6,
+        "min_inclusive": 4
+      },
+      "height_rand_a": 5,
+      "height_rand_b": 5,
+      "place_branch_per_log_probability": 0.55
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "meowskis:willow_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    }
+  }
+}
