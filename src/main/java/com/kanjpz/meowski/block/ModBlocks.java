@@ -29,6 +29,14 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BLUE_BERRY_BUSH = BLOCKS.register("blue_berry_bush",
         () -> new BlueBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
+    public static final DeferredBlock<LilyPadsBlock> LILY_PADS =
+            BLOCKS.register("lily_pads",
+                    () -> new LilyPadsBlock(
+                            BlockBehaviour.Properties
+                                    .ofFullCopy(Blocks.LILY_PAD)
+                                    .noCollission()
+                    ));
+
     public static final DeferredBlock<Block> WILLOW_LOG = registerBlock("willow_log",
         () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
     public static final DeferredBlock<Block> WILLOW_WOOD = registerBlock("willow_wood",
@@ -37,9 +45,6 @@ public class ModBlocks {
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
     public static final DeferredBlock<Block> STRIPPED_WILLOW_WOOD = registerBlock("stripped_willow_wood",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
-
-    public static final DeferredBlock<Block> LILY_PADS = registerBlock("lily_pads",
-            () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(WaterlilyBlock.LILY_PADS)));
 
     public static final DeferredBlock<Block> WILLOW_PLANKS = registerBlock("willow_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)) {
