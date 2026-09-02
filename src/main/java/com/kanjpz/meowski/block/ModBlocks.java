@@ -1,7 +1,7 @@
 package com.kanjpz.meowski.block;
 
 import com.kanjpz.meowski.block.custom.BlueBerryBushBlock;
-import com.kanjpz.meowski.block.custom.LilyPadsBlock;
+import com.kanjpz.meowski.block.custom.ForestMossBlock;
 import com.kanjpz.meowski.block.custom.ModFlammableRotatedPillarBlock;
 import com.kanjpz.meowski.item.ModItems;
 import com.kanjpz.meowski.meowski;
@@ -18,6 +18,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import com.kanjpz.meowski.block.custom.ForestMossBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.function.Supplier;
 
@@ -29,14 +34,23 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BLUE_BERRY_BUSH = BLOCKS.register("blue_berry_bush",
         () -> new BlueBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
-    public static final DeferredBlock<LilyPadsBlock> LILY_PADS =
-            BLOCKS.register("lily_pads",
-                    () -> new LilyPadsBlock(
+    //public static final DeferredBlock<LilyPadsBlock> LILY_PADS =
+            //BLOCKS.register("lily_pads",
+                   // () -> new LilyPadsBlock(
+                            //BlockBehaviour.Properties
+                                 //   .ofFullCopy(Blocks.LILY_PAD)
+                                 //   .noCollission()
+                   // ));
+    public static final DeferredBlock<ForestMossBlock> FOREST_MOSS =
+            registerBlock(
+                    "forest_moss",
+                    () -> new ForestMossBlock(
                             BlockBehaviour.Properties
-                                    .ofFullCopy(Blocks.LILY_PAD)
-                                    .noCollission()
-                    ));
-
+                                    .ofFullCopy(Blocks.MOSS_BLOCK)
+                                    .sound(SoundType.MOSS)
+                                    .speedFactor(0.65F)
+                    )
+            );
     public static final DeferredBlock<Block> WILLOW_LOG = registerBlock("willow_log",
         () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
     public static final DeferredBlock<Block> WILLOW_WOOD = registerBlock("willow_wood",

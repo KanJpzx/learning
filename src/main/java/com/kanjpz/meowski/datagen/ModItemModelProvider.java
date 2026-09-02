@@ -25,6 +25,9 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.BLUE_BERRIES.get());
+        //withExistingParent(ModItems.LILY_PADS.getId().getPath(),
+                //ResourceLocation.parse("item/generated"))
+                //.texture("layer0", ResourceLocation.fromNamespaceAndPath(meowski.MOD_ID, "item/lily_pads_2d"));
         saplingItem(ModBlocks.WILLOW_SAPLING);
     }
 }

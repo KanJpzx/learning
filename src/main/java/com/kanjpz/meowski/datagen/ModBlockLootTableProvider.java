@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
@@ -34,6 +36,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         add(ModBlocks.BLUE_BERRY_BUSH.get(), this::createBerryBushDrops);
+       // add(ModBlocks.LILY_PADS.get(), this::createLilyPadsDrops);
 
         // add(ModBlocks.RUBY_ORE.get(),         **single ore drop**
                // block -> createOreDrop(ModBlocks.RUBY_ORE.get(), ModItems.RUBY.get()));
@@ -49,9 +52,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.WILLOW_PLANKS.get());
         this.dropSelf(ModBlocks.WILLOW_SAPLING.get());
 
+        this.dropSelf(ModBlocks.FOREST_MOSS.get());
+
         this.add(ModBlocks.WILLOW_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.WILLOW_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
     }
+
 
     private LootTable.Builder createBerryBushDrops(Block block) {
         HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);

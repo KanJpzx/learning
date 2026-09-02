@@ -25,6 +25,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.WILLOW_WOOD.get())
                 .add(ModBlocks.STRIPPED_WILLOW_WOOD.get())
                 .add(ModBlocks.STRIPPED_WILLOW_LOG.get());
+        this.tag(BlockTags.MINEABLE_WITH_HOE)
+                .add(ModBlocks.FOREST_MOSS.get());
 
     }
 }

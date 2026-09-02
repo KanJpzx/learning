@@ -28,8 +28,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(ItemTags.PLANKS)
                 .add(ModBlocks.WILLOW_PLANKS.get().asItem());
+
         this.tag(ItemTags.FLOWERS)
-                .add(ModBlocks.LILY_PADS.get().asItem());
+                .add(ModBlocks.FOREST_MOSS.get().asItem());
 
     }
 }

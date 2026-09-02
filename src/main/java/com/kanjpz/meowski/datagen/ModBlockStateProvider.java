@@ -1,7 +1,6 @@
 package com.kanjpz.meowski.datagen;
 
 import com.kanjpz.meowski.block.ModBlocks;
-import com.kanjpz.meowski.block.custom.LilyPadsBlock;
 import com.kanjpz.meowski.meowski;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
@@ -37,6 +36,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 blockTexture(ModBlocks.WILLOW_LEAVES.get())).renderType("cutout"));
         simpleBlockWithItem(ModBlocks.WILLOW_SAPLING.get(), models().cross("willow_sapling",
                 blockTexture(ModBlocks.WILLOW_SAPLING.get())).renderType("cutout"));
+
+        simpleBlockWithItem(
+                ModBlocks.FOREST_MOSS.get(),
+                cubeAll(ModBlocks.FOREST_MOSS.get()));
 
     }
 

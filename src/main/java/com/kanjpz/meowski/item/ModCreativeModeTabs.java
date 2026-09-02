@@ -20,7 +20,6 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.meowski.meowski_items"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.BLUE_BERRIES.get());
-                        output.accept(ModItems.LILY_PADS.get());
 
                         output.accept(ModBlocks.WILLOW_LOG.get());
                         output.accept(ModBlocks.WILLOW_WOOD.get());
@@ -29,6 +28,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.WILLOW_PLANKS.get());
                         output.accept(ModBlocks.WILLOW_SAPLING.get());
                         output.accept(ModBlocks.WILLOW_LEAVES.get());
+                        output.accept(ModBlocks.FOREST_MOSS.get());
                     }).build());
 
 
