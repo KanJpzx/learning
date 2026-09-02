@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "pads=1": { "model": "meowski:block/lily_pads_1" },
+    "pads=2": { "model": "meowski:block/lily_pads_2" },
+    "pads=3": { "model": "meowski:block/lily_pads_3" },
+    "pads=4": { "model": "meowski:block/lily_pads_4" }
+  }
+}
