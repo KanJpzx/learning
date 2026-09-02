@@ -1,6 +1,7 @@
 package com.kanjpz.meowski.block;
 
 import com.kanjpz.meowski.block.custom.BlueBerryBushBlock;
+import com.kanjpz.meowski.block.custom.LilyPadsBlock;
 import com.kanjpz.meowski.block.custom.ModFlammableRotatedPillarBlock;
 import com.kanjpz.meowski.item.ModItems;
 import com.kanjpz.meowski.meowski;
@@ -10,10 +11,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,6 +37,9 @@ public class ModBlocks {
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
     public static final DeferredBlock<Block> STRIPPED_WILLOW_WOOD = registerBlock("stripped_willow_wood",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
+
+    public static final DeferredBlock<Block> LILY_PADS = registerBlock("lily_pads",
+            () -> new WaterlilyBlock(BlockBehaviour.Properties.ofFullCopy(WaterlilyBlock.LILY_PADS)));
 
     public static final DeferredBlock<Block> WILLOW_PLANKS = registerBlock("willow_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)) {
