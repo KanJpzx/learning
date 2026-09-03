@@ -1,8 +1,6 @@
 package com.kanjpz.meowski.block;
 
-import com.kanjpz.meowski.block.custom.BlueBerryBushBlock;
-import com.kanjpz.meowski.block.custom.ForestMossBlock;
-import com.kanjpz.meowski.block.custom.ModFlammableRotatedPillarBlock;
+import com.kanjpz.meowski.block.custom.*;
 import com.kanjpz.meowski.item.ModItems;
 import com.kanjpz.meowski.meowski;
 import com.kanjpz.meowski.worldgen.tree.ModTreeGrowers;
@@ -18,7 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import com.kanjpz.meowski.block.custom.ForestMossBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -49,6 +46,15 @@ public class ModBlocks {
                                     .ofFullCopy(Blocks.MOSS_BLOCK)
                                     .sound(SoundType.MOSS)
                                     .speedFactor(0.65F)
+                    )
+            );
+    public static final DeferredBlock<CatTailsBlock> CATTAILS =
+            registerBlock(
+                    "cattails",
+                    () -> new CatTailsBlock(
+                            BlockBehaviour.Properties
+                                    .ofFullCopy(Blocks.TALL_SEAGRASS)
+                                    .noCollission()
                     )
             );
     public static final DeferredBlock<Block> WILLOW_LOG = registerBlock("willow_log",

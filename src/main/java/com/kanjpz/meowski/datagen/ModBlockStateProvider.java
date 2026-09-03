@@ -4,8 +4,10 @@ import com.kanjpz.meowski.block.ModBlocks;
 import com.kanjpz.meowski.meowski;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -40,7 +42,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.FOREST_MOSS.get(),
                 cubeAll(ModBlocks.FOREST_MOSS.get()));
-
+        simpleBlockItem(
+                ModBlocks.CATTAILS.get(),
+                models().getExistingFile(
+                        modLoc("block/cattails")
+                )
+        );
     }
 
     private void berryBushBlock(Block block) {
@@ -52,5 +59,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             modLoc("block/blueberry_bush_stage" + age)).renderType("cutout"))
                     .build();
         });
+    }
+
+    private void catTailsBlock(Block block) {
+
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+
+                    DoubleBlockHalf half =
+                            state.getValue(DoublePlantBlock.HALF);
+
+                    String model =
+                            half == DoubleBlockHalf.LOWER
+                                    ? "block/cattails"
+                                    : "block/cattails_empty";
+
+                    return ConfiguredModel.builder()
+                            .modelFile(
+                                    models().getExistingFile(
+                                            modLoc(model)
+                                    )
+                            )
+                            .build();
+                });
     }
 }
