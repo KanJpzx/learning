@@ -49,6 +49,7 @@ public class ModConfiguredFeatures {
                         new TwoLayersFeatureSize(0, 0, 0))
                             .ignoreVines()
                             .build());
+
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
