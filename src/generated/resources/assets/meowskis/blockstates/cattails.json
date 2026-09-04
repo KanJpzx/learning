@@ -1,0 +1,44 @@
+{
+  "variants": {
+    "half=lower,waterlogged=false": [
+      {
+        "model": "meowskis:block/cattails"
+      },
+      {
+        "model": "meowskis:block/cattails",
+        "y": 90
+      },
+      {
+        "model": "meowskis:block/cattails",
+        "y": 180
+      },
+      {
+        "model": "meowskis:block/cattails",
+        "y": 270
+      }
+    ],
+    "half=lower,waterlogged=true": [
+      {
+        "model": "meowskis:block/cattails"
+      },
+      {
+        "model": "meowskis:block/cattails",
+        "y": 90
+      },
+      {
+        "model": "meowskis:block/cattails",
+        "y": 180
+      },
+      {
+        "model": "meowskis:block/cattails",
+        "y": 270
+      }
+    ],
+    "half=upper,waterlogged=false": {
+      "model": "meowskis:block/cattails_empty"
+    },
+    "half=upper,waterlogged=true": {
+      "model": "meowskis:block/cattails_empty"
+    }
+  }
+}

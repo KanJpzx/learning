@@ -36,8 +36,7 @@ public class CatTailsBlock extends TallFlowerBlock
                 this.getStateDefinition()
                         .any()
                         .setValue(HALF, DoubleBlockHalf.LOWER)
-                        .setValue(WATERLOGGED, false)
-        );
+                        .setValue(WATERLOGGED, false));
     }
 
     @Override
@@ -102,8 +101,7 @@ public class CatTailsBlock extends TallFlowerBlock
                         neighbour,
                         level,
                         pos,
-                        neighbourPos
-                );
+                        neighbourPos);
 
         // The vanilla double-plant code may decide this half is invalid.
         if (!result.is(this)) {

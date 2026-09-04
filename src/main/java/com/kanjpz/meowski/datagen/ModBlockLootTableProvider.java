@@ -12,7 +12,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -53,7 +55,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.WILLOW_SAPLING.get());
 
         this.dropSelf(ModBlocks.FOREST_MOSS.get());
-        this.dropSelf(ModBlocks.CATTAILS.get());
+
+        this.add(ModBlocks.CATTAILS.get(),
+                block -> createSinglePropConditionTable(block,
+                        DoublePlantBlock.HALF,
+                        DoubleBlockHalf.LOWER));
 
         this.add(ModBlocks.WILLOW_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.WILLOW_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));

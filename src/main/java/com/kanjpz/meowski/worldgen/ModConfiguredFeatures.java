@@ -16,41 +16,39 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.UpwardsBranchingTrunkPlacer;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModConfiguredFeatures {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_MOSS_PATCH_BONEMEAL_KEY = registerKey("forest_moss_patch_bonemeal");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILLOW_KEY = registerKey("willow");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         var blockGetter = context.lookup(Registries.BLOCK);
 
-        register(context, WILLOW_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(ModBlocks.WILLOW_LOG.get()),
-                new UpwardsBranchingTrunkPlacer(
-                        8,
-                        5,
-                        5,
-                        UniformInt.of(4, 6),
-                        0.55F,
-                        UniformInt.of(4, 5),
-                        blockGetter.getOrThrow(BlockTags.LEAVES)
-                ),
+        register(context, WILLOW_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.WILLOW_LOG.get()),
+                        new FancyTrunkPlacer(
+                                9,  // base height
+                                5,  // random extra height A
+                                2),   // random extra height B
+                        // WHAT BLOCK MAKES THE LEAVES?
+                        BlockStateProvider.simple(ModBlocks.WILLOW_LEAVES.get()),
 
-                BlockStateProvider.simple(ModBlocks.WILLOW_LEAVES.get()),
-                new CherryFoliagePlacer(
-                        ConstantInt.of(3),
-                        ConstantInt.of(2),
-                        ConstantInt.of(4),
-                        0.50F,
-                        0.65F,
-                        0.65F,
-                        0.55F),
+                        // HOW DOES THE CANOPY GENERATE?
+                        new CherryFoliagePlacer(
+                                ConstantInt.of(4), // radius
+                                ConstantInt.of(1), // offset
+                                ConstantInt.of(4), // foliage height
 
-                    new TwoLayersFeatureSize(1, 0,2)).ignoreVines().build());
-
-
+                                0.65F, // holes in wide bottom layer
+                                0.50F, // corner hole chance
+                                0.3F, // hanging leaves chance
+                                0.6F), // chance hanging leaves extend farther
+                        // HOW MUCH SPACE THE TREE NEEDS
+                        new TwoLayersFeatureSize(0, 0, 0))
+                            .ignoreVines()
+                            .build());
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

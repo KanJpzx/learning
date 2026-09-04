@@ -20,6 +20,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         berryBushBlock(ModBlocks.BLUE_BERRY_BUSH.get());
+        catTailsBlock(ModBlocks.CATTAILS.get());
 
         logBlock(((RotatedPillarBlock) ModBlocks.WILLOW_LOG.get()));
         simpleBlockItem(ModBlocks.WILLOW_LOG.get(), models().getExistingFile(modLoc("block/willow_log")));
@@ -60,7 +61,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .build();
         });
     }
-
     private void catTailsBlock(Block block) {
 
         getVariantBuilder(block)
@@ -69,17 +69,55 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     DoubleBlockHalf half =
                             state.getValue(DoublePlantBlock.HALF);
 
-                    String model =
-                            half == DoubleBlockHalf.LOWER
-                                    ? "block/cattails"
-                                    : "block/cattails_empty";
+                    // UPPER HALF:
+                    // It is invisible, so rotation doesn't matter.
+                    if (half == DoubleBlockHalf.UPPER) {
 
+                        return ConfiguredModel.builder()
+                                .modelFile(
+                                        models().getExistingFile(
+                                                modLoc("block/cattails_empty")
+                                        )
+                                )
+                                .build();
+                    }
+
+                    // LOWER HALF:
+                    // Give Minecraft 4 possible rotations.
+                    // It picks one, making cattails look randomly rotated.
                     return ConfiguredModel.builder()
+
                             .modelFile(
                                     models().getExistingFile(
-                                            modLoc(model)
+                                            modLoc("block/cattails")
                                     )
                             )
+                            .rotationY(0)
+                            .nextModel()
+
+                            .modelFile(
+                                    models().getExistingFile(
+                                            modLoc("block/cattails")
+                                    )
+                            )
+                            .rotationY(90)
+                            .nextModel()
+
+                            .modelFile(
+                                    models().getExistingFile(
+                                            modLoc("block/cattails")
+                                    )
+                            )
+                            .rotationY(180)
+                            .nextModel()
+
+                            .modelFile(
+                                    models().getExistingFile(
+                                            modLoc("block/cattails")
+                                    )
+                            )
+                            .rotationY(270)
+
                             .build();
                 });
     }
