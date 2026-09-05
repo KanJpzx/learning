@@ -35,8 +35,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocks.STRIPPED_WILLOW_WOOD.get(), models().getExistingFile(modLoc("block/stripped_willow_wood")));
 
         simpleBlockWithItem(ModBlocks.WILLOW_PLANKS.get(), cubeAll(ModBlocks.WILLOW_PLANKS.get()));
-        simpleBlockWithItem(ModBlocks.WILLOW_LEAVES.get(), models().cubeAll("willow_leaves",
-                blockTexture(ModBlocks.WILLOW_LEAVES.get())).renderType("cutout"));
+
+        simpleBlockWithItem(
+                ModBlocks.WILLOW_LEAVES.get(),
+                models()
+                        .withExistingParent("willow_leaves",
+                                mcLoc("block/leaves"))
+                        .texture("all",
+                                blockTexture(ModBlocks.WILLOW_LEAVES.get()))
+                        .renderType("cutout"));
+
         simpleBlockWithItem(ModBlocks.WILLOW_SAPLING.get(), models().cross("willow_sapling",
                 blockTexture(ModBlocks.WILLOW_SAPLING.get())).renderType("cutout"));
 

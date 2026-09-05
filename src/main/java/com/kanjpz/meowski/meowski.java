@@ -3,6 +3,7 @@ package com.kanjpz.meowski;
 import com.kanjpz.meowski.block.ModBlocks;
 import com.kanjpz.meowski.item.ModCreativeModeTabs;
 import com.kanjpz.meowski.item.ModItems;
+import com.kanjpz.meowski.worldgen.ModBiomeModifiers;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
@@ -38,6 +39,7 @@ public class meowski {
         ModCreativeModeTabs.register(modEventBus);
 
         //for items of some kind I don't even know
+        ModBiomeModifiers.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 

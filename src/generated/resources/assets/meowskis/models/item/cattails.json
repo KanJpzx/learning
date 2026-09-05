@@ -1,3 +1,6 @@
 {
-  "parent": "meowskis:block/cattails"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "meowskis:item/cattails"
+  }
 }

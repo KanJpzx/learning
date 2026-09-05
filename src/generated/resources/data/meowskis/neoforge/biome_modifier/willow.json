@@ -1,9 +1,6 @@
 {
   "type": "neoforge:add_features",
-  "biomes": [
-    "minecraft:swamp",
-    "minecraft:swamp"
-  ],
+  "biomes": "minecraft:swamp",
   "features": "meowskis:willow",
   "step": "vegetal_decoration"
 }

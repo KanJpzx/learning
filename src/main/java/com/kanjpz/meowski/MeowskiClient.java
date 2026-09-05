@@ -1,11 +1,15 @@
 package com.kanjpz.meowski;
 
+import com.kanjpz.meowski.block.ModBlocks;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.world.level.FoliageColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -23,5 +27,25 @@ public class MeowskiClient {
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
+    }
+
+    @SubscribeEvent
+    static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+
+        event.register(
+                (state, level, pos, tintIndex) -> {
+
+                    if (level == null || pos == null) {
+                        return FoliageColor.getDefaultColor();
+                    }
+
+                    return BiomeColors.getAverageFoliageColor(
+                            level,
+                            pos
+                    );
+                },
+
+                ModBlocks.WILLOW_LEAVES.get()
+        );
     }
 }

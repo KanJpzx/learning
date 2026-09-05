@@ -41,8 +41,8 @@ public class ModConfiguredFeatures {
                                 ConstantInt.of(1), // offset
                                 ConstantInt.of(4), // foliage height
 
-                                0.65F, // holes in wide bottom layer
-                                0.50F, // corner hole chance
+                                0.75F, // holes in wide bottom layer
+                                0.65F, // corner hole chance
                                 0.3F, // hanging leaves chance
                                 0.6F), // chance hanging leaves extend farther
                         // HOW MUCH SPACE THE TREE NEEDS
