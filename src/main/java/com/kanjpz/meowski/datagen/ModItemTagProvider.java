@@ -31,6 +31,32 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(ItemTags.FLOWERS)
                 .add(ModBlocks.FOREST_MOSS.get().asItem());
+        this.tag(ItemTags.WOODEN_STAIRS)
+                .add(ModBlocks.WILLOW_STAIRS.get().asItem());
+
+        this.tag(ItemTags.WOODEN_SLABS)
+                .add(ModBlocks.WILLOW_SLAB.get().asItem());
+
+        this.tag(ItemTags.WOODEN_FENCES)
+                .add(ModBlocks.WILLOW_FENCE.get().asItem());
+
+        this.tag(ItemTags.FENCE_GATES)
+                .add(ModBlocks.WILLOW_FENCE_GATE.get().asItem());
+
+        this.tag(ItemTags.WOODEN_DOORS)
+                .add(ModBlocks.WILLOW_DOOR.get().asItem());
+
+        this.tag(ItemTags.WOODEN_TRAPDOORS)
+                .add(ModBlocks.WILLOW_TRAPDOOR.get().asItem());
+
+        this.tag(ItemTags.WOODEN_PRESSURE_PLATES)
+                .add(ModBlocks.WILLOW_PRESSURE_PLATE.get().asItem());
+
+        this.tag(ItemTags.WOODEN_BUTTONS)
+                .add(ModBlocks.WILLOW_BUTTON.get().asItem());
+
+        this.tag(ItemTags.SAPLINGS)
+                .add(ModBlocks.WILLOW_SAPLING.get().asItem());
 
     }
 }

@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -53,12 +54,27 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.STRIPPED_WILLOW_LOG.get());
         this.dropSelf(ModBlocks.WILLOW_PLANKS.get());
         this.dropSelf(ModBlocks.WILLOW_SAPLING.get());
+        this.dropSelf(ModBlocks.WILLOW_STAIRS.get());
+        this.dropSelf(ModBlocks.WILLOW_SLAB.get());
+
+        this.dropSelf(ModBlocks.WILLOW_FENCE.get());
+        this.dropSelf(ModBlocks.WILLOW_FENCE_GATE.get());
+
+        this.dropSelf(ModBlocks.WILLOW_TRAPDOOR.get());
+
+        this.dropSelf(ModBlocks.WILLOW_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.WILLOW_BUTTON.get());
 
         this.dropSelf(ModBlocks.FOREST_MOSS.get());
 
         this.add(ModBlocks.CATTAILS.get(),
                 block -> createSinglePropConditionTable(block,
                         DoublePlantBlock.HALF,
+                        DoubleBlockHalf.LOWER));
+
+        this.add(ModBlocks.WILLOW_DOOR.get(),
+                block -> createSinglePropConditionTable(block,
+                        DoorBlock.HALF,
                         DoubleBlockHalf.LOWER));
 
         this.add(ModBlocks.WILLOW_LEAVES.get(), block ->

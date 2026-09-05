@@ -25,6 +25,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(ModItems.BLUE_BERRIES.get());
+        basicItem(ModBlocks.WILLOW_DOOR.get().asItem());
 
         withExistingParent(ModBlocks.CATTAILS.getId().getPath(),
                 ResourceLocation.parse("item/generated"))

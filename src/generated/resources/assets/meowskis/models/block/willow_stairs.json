@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "meowskis:block/willow_planks",
+    "side": "meowskis:block/willow_planks",
+    "top": "meowskis:block/willow_planks"
+  }
+}

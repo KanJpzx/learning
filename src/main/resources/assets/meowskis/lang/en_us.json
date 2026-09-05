@@ -12,5 +12,13 @@
   "block.meowskis.stripped_willow_wood": "Stripped willow wood",
   "block.meowskis.willow_planks": "Willow Planks",
   "block.meowskis.willow_sapling": "Willow Sapling",
-  "block.meowskis.willow_leaves": "Willow Leaves"
+  "block.meowskis.willow_leaves": "Willow Leaves",
+  "block.meowskis.willow_stairs": "Willow Stairs",
+  "block.meowskis.willow_slab": "Willow Slab",
+  "block.meowskis.willow_fence": "Willow Fence",
+  "block.meowskis.willow_fence_gate": "Willow Fence Gate",
+  "block.meowskis.willow_door": "Willow Door",
+  "block.meowskis.willow_trapdoor": "Willow Trapdoor",
+  "block.meowskis.willow_pressure_plate": "Willow Pressure Plate",
+  "block.meowskis.willow_button": "Willow Button"
 }

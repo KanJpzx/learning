@@ -30,6 +30,17 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.WILLOW_LEAVES.get());
                         output.accept(ModBlocks.FOREST_MOSS.get());
                         output.accept(ModBlocks.CATTAILS.get());
+                        output.accept(ModBlocks.WILLOW_STAIRS.get());
+                        output.accept(ModBlocks.WILLOW_SLAB.get());
+
+                        output.accept(ModBlocks.WILLOW_FENCE.get());
+                        output.accept(ModBlocks.WILLOW_FENCE_GATE.get());
+
+                        output.accept(ModBlocks.WILLOW_DOOR.get());
+                        output.accept(ModBlocks.WILLOW_TRAPDOOR.get());
+
+                        output.accept(ModBlocks.WILLOW_PRESSURE_PLATE.get());
+                        output.accept(ModBlocks.WILLOW_BUTTON.get());
                     }).build());
 
 

@@ -35,6 +35,104 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocks.STRIPPED_WILLOW_WOOD.get(), models().getExistingFile(modLoc("block/stripped_willow_wood")));
 
         simpleBlockWithItem(ModBlocks.WILLOW_PLANKS.get(), cubeAll(ModBlocks.WILLOW_PLANKS.get()));
+        var willowPlanks = blockTexture(ModBlocks.WILLOW_PLANKS.get());
+
+
+// STAIRS
+        stairsBlock(
+                ModBlocks.WILLOW_STAIRS.get(),
+                willowPlanks
+        );
+
+        simpleBlockItem(
+                ModBlocks.WILLOW_STAIRS.get(),
+                models().getExistingFile(
+                        modLoc("block/willow_stairs")
+                )
+        );
+
+
+// SLAB
+        slabBlock(
+                ModBlocks.WILLOW_SLAB.get(),
+                modLoc("block/willow_planks"),
+                willowPlanks
+        );
+
+        simpleBlockItem(
+                ModBlocks.WILLOW_SLAB.get(),
+                models().getExistingFile(
+                        modLoc("block/willow_slab")
+                )
+        );
+
+
+// FENCE
+        fenceBlock(
+                ModBlocks.WILLOW_FENCE.get(),
+                willowPlanks
+        );
+
+        simpleBlockItem(
+                ModBlocks.WILLOW_FENCE.get(),
+                models().fenceInventory(
+                        "willow_fence_inventory",
+                        willowPlanks
+                )
+        );
+
+
+// FENCE GATE
+        fenceGateBlock(
+                ModBlocks.WILLOW_FENCE_GATE.get(),
+                willowPlanks
+        );
+
+        simpleBlockItem(
+                ModBlocks.WILLOW_FENCE_GATE.get(),
+                models().getExistingFile(
+                        modLoc("block/willow_fence_gate")
+                )
+        );
+
+
+// PRESSURE PLATE
+        pressurePlateBlock(
+                ModBlocks.WILLOW_PRESSURE_PLATE.get(),
+                willowPlanks
+        );
+
+        simpleBlockItem(
+                ModBlocks.WILLOW_PRESSURE_PLATE.get(),
+                models().getExistingFile(
+                        modLoc("block/willow_pressure_plate")
+                )
+        );
+
+
+// BUTTON
+        buttonBlock(
+                ModBlocks.WILLOW_BUTTON.get(),
+                willowPlanks
+        );
+
+        simpleBlockItem(
+                ModBlocks.WILLOW_BUTTON.get(),
+                models().buttonInventory(
+                        "willow_button_inventory",
+                        willowPlanks
+                )
+        );
+
+
+// DOOR
+        doorBlockWithRenderType(
+                ModBlocks.WILLOW_DOOR.get(),
+                modLoc("block/willow_door_bottom"),
+                modLoc("block/willow_door_top"),
+                "cutout"
+        );
+
 
         simpleBlockWithItem(
                 ModBlocks.WILLOW_LEAVES.get(),
