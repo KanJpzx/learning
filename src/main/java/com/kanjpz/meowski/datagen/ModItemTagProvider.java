@@ -30,7 +30,9 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModBlocks.WILLOW_PLANKS.get().asItem());
 
         this.tag(ItemTags.FLOWERS)
-                .add(ModBlocks.FOREST_MOSS.get().asItem());
+                .add(ModBlocks.FOREST_MOSS.get().asItem())
+                .add(ModBlocks.LILY_PADS.get().asItem());
+
         this.tag(ItemTags.WOODEN_STAIRS)
                 .add(ModBlocks.WILLOW_STAIRS.get().asItem());
 

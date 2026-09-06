@@ -124,7 +124,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 )
         );
 
-
+        trapdoorBlockWithRenderType(
+                ModBlocks.WILLOW_TRAPDOOR.get(),
+                modLoc("block/willow_trapdoor"),
+                true,
+                "cutout"
+        );
 // DOOR
         doorBlockWithRenderType(
                 ModBlocks.WILLOW_DOOR.get(),
@@ -149,12 +154,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.FOREST_MOSS.get(),
                 cubeAll(ModBlocks.FOREST_MOSS.get()));
+
         simpleBlockItem(
                 ModBlocks.CATTAILS.get(),
                 models().getExistingFile(
-                        modLoc("block/cattails")
-                )
-        );
+                        modLoc("block/cattails")));
+        simpleBlockItem(
+                ModBlocks.LILY_PADS.get(),
+                models().getExistingFile(
+                        modLoc("block/lily_pads")));
     }
 
     private void berryBushBlock(Block block) {

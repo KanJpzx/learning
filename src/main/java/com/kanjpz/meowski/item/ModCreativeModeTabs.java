@@ -29,6 +29,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.WILLOW_SAPLING.get());
                         output.accept(ModBlocks.WILLOW_LEAVES.get());
                         output.accept(ModBlocks.FOREST_MOSS.get());
+                        output.accept(ModBlocks.LILY_PADS.get());
                         output.accept(ModBlocks.CATTAILS.get());
                         output.accept(ModBlocks.WILLOW_STAIRS.get());
                         output.accept(ModBlocks.WILLOW_SLAB.get());

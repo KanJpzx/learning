@@ -66,6 +66,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.WILLOW_BUTTON.get());
 
         this.dropSelf(ModBlocks.FOREST_MOSS.get());
+        this.dropSelf(ModBlocks.LILY_PADS.get());
 
         this.add(ModBlocks.CATTAILS.get(),
                 block -> createSinglePropConditionTable(block,

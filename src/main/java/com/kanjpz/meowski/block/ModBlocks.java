@@ -61,9 +61,8 @@ public class ModBlocks {
                             BlockBehaviour.Properties
                                     .ofFullCopy(Blocks.MOSS_BLOCK)
                                     .sound(SoundType.MOSS)
-                                    .speedFactor(0.65F)
-                    )
-            );
+                                    .speedFactor(0.65F)));
+
     public static final DeferredBlock<CatTailsBlock> CATTAILS =
             registerBlock(
                     "cattails",
@@ -71,8 +70,18 @@ public class ModBlocks {
                             BlockBehaviour.Properties
                                     .ofFullCopy(Blocks.TALL_SEAGRASS)
                                     .noCollission()
-                    )
-            );
+
+                    ));
+
+
+    public static final DeferredBlock<LilyPads> LILY_PADS =
+            registerBlock(
+                    "lily_pads",
+                    () -> new LilyPads(
+                            BlockBehaviour.Properties
+                                    .ofFullCopy(Blocks.LILY_PAD)
+                                    .noCollission()));
+
     public static final DeferredBlock<Block> WILLOW_LOG = registerBlock("willow_log",
         () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
     public static final DeferredBlock<Block> WILLOW_WOOD = registerBlock("willow_wood",

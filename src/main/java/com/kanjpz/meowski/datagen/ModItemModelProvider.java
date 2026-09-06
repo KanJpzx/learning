@@ -26,16 +26,26 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         basicItem(ModItems.BLUE_BERRIES.get());
         basicItem(ModBlocks.WILLOW_DOOR.get().asItem());
-
+        withExistingParent(
+                ModBlocks.WILLOW_TRAPDOOR.getId().getPath(),
+                ResourceLocation.parse("block/template_orientable_trapdoor_bottom")
+        )
+                .texture(
+                        "texture",
+                        ResourceLocation.fromNamespaceAndPath(
+                                meowski.MOD_ID,
+                                "block/willow_trapdoor"
+                        )
+                );
         withExistingParent(ModBlocks.CATTAILS.getId().getPath(),
                 ResourceLocation.parse("item/generated"))
                 .texture("layer0",
                         ResourceLocation.fromNamespaceAndPath(meowski.MOD_ID,
                                 "item/cattails"));
 
-        //withExistingParent(ModItems.LILY_PADS.getId().getPath(),
-                //ResourceLocation.parse("item/generated"))
-                //.texture("layer0", ResourceLocation.fromNamespaceAndPath(meowski.MOD_ID, "item/lily_pads_2d"));
+        withExistingParent(ModBlocks.LILY_PADS.getId().getPath(),
+                ResourceLocation.parse("item/generated"))
+               .texture("layer0", ResourceLocation.fromNamespaceAndPath(meowski.MOD_ID, "item/lily_pads_2d"));
 
         saplingItem(ModBlocks.WILLOW_SAPLING);
     }

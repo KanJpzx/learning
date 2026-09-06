@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    [
+      {
+        "item": "meowskis:willow_log"
+      },
+      {
+        "item": "meowskis:willow_wood"
+      },
+      {
+        "item": "meowskis:stripped_willow_log"
+      },
+      {
+        "item": "meowskis:stripped_willow_wood"
+      }
+    ]
+  ],
+  "result": {
+    "count": 4,
+    "id": "meowskis:willow_planks"
+  }
+}
