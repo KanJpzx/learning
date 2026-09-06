@@ -75,13 +75,14 @@ public class ModBlocks {
 
 
     public static final DeferredBlock<LilyPads> LILY_PADS =
-            registerBlock(
+            BLOCKS.register(
                     "lily_pads",
                     () -> new LilyPads(
                             BlockBehaviour.Properties
                                     .ofFullCopy(Blocks.LILY_PAD)
-                                    .noCollission()));
-
+                                    .noCollission()
+                    )
+            );
     public static final DeferredBlock<Block> WILLOW_LOG = registerBlock("willow_log",
         () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
     public static final DeferredBlock<Block> WILLOW_WOOD = registerBlock("willow_wood",
