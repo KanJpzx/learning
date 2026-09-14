@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -24,6 +25,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.List;
+
 
 public class ModBiomeModifiers {
 
@@ -95,6 +97,10 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> OAK_KEY =
             registerKey("oak");
+    public static final ResourceKey<BiomeModifier> BIRCH_KEY =
+            registerKey("birch");
+    public static final ResourceKey<BiomeModifier> CATTAILS_KEY =
+            registerKey("cattails");
 
     public static final ResourceKey<BiomeModifier> REMOVE_SWAMP_TREES =
             registerKey("remove_swamp_trees");
@@ -164,6 +170,18 @@ public class ModBiomeModifiers {
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.OAK_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(BIRCH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(List.of(biomes.getOrThrow(Biomes.FOREST))),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BIRCH_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(CATTAILS_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        cattailBiomes(biomes),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CATTAILS_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
 
         // -----------------------------------------------------
         // CHANGE SWAMP GRASS COLOR
@@ -181,6 +199,40 @@ public class ModBiomeModifiers {
                         SWAMP_WATER_FOG_COLOR
                 )
         );
+    }
+
+    private static HolderSet<Biome> cattailBiomes(HolderGetter<Biome> biomes) {
+        return HolderSet.direct(List.of(
+                biomes.getOrThrow(Biomes.PLAINS),
+                biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
+                biomes.getOrThrow(Biomes.SNOWY_PLAINS),
+                biomes.getOrThrow(Biomes.DESERT),
+                biomes.getOrThrow(Biomes.SWAMP),
+                biomes.getOrThrow(Biomes.MANGROVE_SWAMP),
+                biomes.getOrThrow(Biomes.FOREST),
+                biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                biomes.getOrThrow(Biomes.DARK_FOREST),
+                biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST),
+                biomes.getOrThrow(Biomes.OLD_GROWTH_PINE_TAIGA),
+                biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA),
+                biomes.getOrThrow(Biomes.TAIGA),
+                biomes.getOrThrow(Biomes.SNOWY_TAIGA),
+                biomes.getOrThrow(Biomes.SAVANNA),
+                biomes.getOrThrow(Biomes.SAVANNA_PLATEAU),
+                biomes.getOrThrow(Biomes.JUNGLE),
+                biomes.getOrThrow(Biomes.SPARSE_JUNGLE),
+                biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),
+                biomes.getOrThrow(Biomes.BADLANDS),
+                biomes.getOrThrow(Biomes.ERODED_BADLANDS),
+                biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                biomes.getOrThrow(Biomes.GROVE),
+                biomes.getOrThrow(Biomes.RIVER),
+                biomes.getOrThrow(Biomes.BEACH),
+                biomes.getOrThrow(Biomes.SNOWY_BEACH),
+                biomes.getOrThrow(Biomes.STONY_SHORE),
+                biomes.getOrThrow(Biomes.MUSHROOM_FIELDS)
+        ));
     }
 
 

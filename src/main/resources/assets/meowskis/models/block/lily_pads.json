@@ -2,8 +2,10 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
+	"render_type": "minecraft:cutout",
+	"ambientocclusion": false,
 	"textures": {
-		"0": "meowski:block/lili_pads",
+		"0": "meowskis:block/lily_pads",
 		"particle": "meowskis:block/lily_pads"
 	},
 	"elements": [

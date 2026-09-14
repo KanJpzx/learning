@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:forest",
+  "features": "meowskis:oak",
+  "step": "vegetal_decoration"
+}
