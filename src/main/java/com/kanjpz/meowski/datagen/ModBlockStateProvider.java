@@ -159,7 +159,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ModBlocks.CATTAILS.get(),
                 models().getExistingFile(
                         modLoc("block/cattails")));
-        simpleBlockItem(
+        simpleBlockWithItem(
                 ModBlocks.LILY_PADS.get(),
                 models().getExistingFile(
                         modLoc("block/lily_pads")));

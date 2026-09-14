@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -22,6 +23,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILLOW_KEY = registerKey("willow");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_KEY = registerKey("oak");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         var blockGetter = context.lookup(Registries.BLOCK);
@@ -50,7 +52,29 @@ public class ModConfiguredFeatures {
                             .ignoreVines()
                             .build());
 
+        register(context, OAK_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.OAK_LOG.defaultBlockState()),
+                        new FancyTrunkPlacer(
+                                9,
+                                5,
+                                2),
+                        BlockStateProvider.simple(Blocks.OAK_LEAVES.defaultBlockState()),
+
+                        new CherryFoliagePlacer(
+                                ConstantInt.of(4),
+                                ConstantInt.of(1),
+                                ConstantInt.of(4),
+
+                                0.75F,
+                                0.65F,
+                                0.3F,
+                                0.6F),
+                        new TwoLayersFeatureSize(0, 0, 0))
+                        .ignoreVines()
+                        .build());
+
     }
+
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(meowski.MOD_ID, name));

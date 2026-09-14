@@ -23,6 +23,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import java.util.List;
+
 public class ModBiomeModifiers {
 
     // =========================================================
@@ -91,8 +93,16 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> WILLOW_KEY =
             registerKey("willow");
 
+    public static final ResourceKey<BiomeModifier> OAK_KEY =
+            registerKey("oak");
+
     public static final ResourceKey<BiomeModifier> REMOVE_SWAMP_TREES =
             registerKey("remove_swamp_trees");
+    public static final ResourceKey<BiomeModifier> REMOVE_OAK_TREES =
+            registerKey("remove_oak_trees");
+
+
+
 
     public static final ResourceKey<BiomeModifier> SWAMP_COLORS_KEY =
             registerKey("swamp_color");
@@ -130,6 +140,13 @@ public class ModBiomeModifiers {
                         HolderSet.direct(biomes.getOrThrow(Biomes.SWAMP)),
                         HolderSet.direct(placedFeatures.getOrThrow(VegetationPlacements.TREES_SWAMP))));
 
+        context.register(REMOVE_OAK_TREES,
+                BiomeModifiers.RemoveFeaturesBiomeModifier.allSteps(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(VegetationPlacements.TREES_BIRCH_AND_OAK))));
+
+
+
 
         // -----------------------------------------------------
         // ADD OUR WILLOW TREES
@@ -139,6 +156,12 @@ public class ModBiomeModifiers {
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         HolderSet.direct(biomes.getOrThrow(Biomes.SWAMP)),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.WILLOW_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(OAK_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(List.of(biomes.getOrThrow(Biomes.FOREST))),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.OAK_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
 
 

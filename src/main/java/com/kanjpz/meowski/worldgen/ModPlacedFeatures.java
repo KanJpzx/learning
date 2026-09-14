@@ -9,6 +9,7 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> WILLOW_KEY = registerKey("willow");
+    public static final ResourceKey<PlacedFeature> OAK_KEY = registerKey("oak");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -24,6 +26,10 @@ public class ModPlacedFeatures {
         register(context, WILLOW_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.WILLOW_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(2,0.2f, 1),
                         ModBlocks.WILLOW_SAPLING.get()));
+
+        register(context, OAK_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.1f, 1),
+                        Blocks.OAK_SAPLING));
 
 
     }
