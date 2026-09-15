@@ -108,6 +108,10 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> FOREST_MOSS_KEY =
             registerKey("forest_moss_patch");
+    public static final ResourceKey<BiomeModifier> COARSE_DIRT_PATCH_KEY =
+            registerKey("coarse_dirt_patch");
+    public static final ResourceKey<BiomeModifier> ROOTED_DIRT_PATCH_KEY =
+            registerKey("rooted_dirt_patch");
 
 
     public static final ResourceKey<BiomeModifier> REMOVE_SWAMP_TREES =
@@ -196,7 +200,19 @@ public class ModBiomeModifiers {
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_MOSS_KEY)),
-                        GenerationStep.Decoration.VEGETAL_DECORATION));
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+
+        context.register(COARSE_DIRT_PATCH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.COARSE_DIRT_PATCH_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+
+        context.register(ROOTED_DIRT_PATCH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ROOTED_DIRT_PATCH_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
 
 
         // -----------------------------------------------------
@@ -245,7 +261,6 @@ public class ModBiomeModifiers {
                 biomes.getOrThrow(Biomes.CHERRY_GROVE),
                 biomes.getOrThrow(Biomes.GROVE),
                 biomes.getOrThrow(Biomes.RIVER),
-                biomes.getOrThrow(Biomes.BEACH),
                 biomes.getOrThrow(Biomes.SNOWY_BEACH),
                 biomes.getOrThrow(Biomes.STONY_SHORE),
                 biomes.getOrThrow(Biomes.MUSHROOM_FIELDS)

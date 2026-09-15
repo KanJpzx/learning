@@ -1,9 +1,9 @@
 {
-  "feature": "meowskis:forest_moss_patch",
+  "feature": "meowskis:coarse_dirt_patch",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 2
+      "count": 3
     },
     {
       "type": "minecraft:in_square"

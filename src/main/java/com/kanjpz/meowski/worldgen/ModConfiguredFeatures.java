@@ -17,6 +17,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
@@ -30,6 +31,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_KEY = registerKey("birch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> CATTAILS_KEY = registerKey("cattails");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_MOSS_KEY = registerKey("forest_moss_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> COARSE_DIRT_PATCH_KEY = registerKey("coarse_dirt_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ROOTED_DIRT_PATCH_KEY = registerKey("rooted_dirt_patch");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> VANILLA_OAK_OVERRIDE =
             ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.withDefaultNamespace("oak"));
@@ -92,15 +95,9 @@ public class ModConfiguredFeatures {
                                 2),
                         BlockStateProvider.simple(Blocks.BIRCH_LEAVES.defaultBlockState()),
 
-                        new CherryFoliagePlacer(
-                                ConstantInt.of(4),
-                                ConstantInt.of(1),
-                                ConstantInt.of(4),
-
-                                0.75F,
-                                0.65F,
-                                0.3F,
-                                0.6F),
+                        new AcaciaFoliagePlacer(
+                                ConstantInt.of(3), // radius — bigger = wider flat top
+                                ConstantInt.of(0)),// offset
                         new TwoLayersFeatureSize(0, 0, 0))
                         .ignoreVines()
                         .build());
@@ -117,11 +114,24 @@ public class ModConfiguredFeatures {
 
         register(context, FOREST_MOSS_KEY, Feature.DISK,
                 new DiskConfiguration(
-                        RuleBasedBlockStateProvider.simple(ModBlocks.FOREST_MOSS.get()), // ← changed here
+                        RuleBasedBlockStateProvider.simple(ModBlocks.FOREST_MOSS.get()),
                         BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
-                        UniformInt.of(2, 4),
+                        UniformInt.of(2, 4), // radius
+                        2));                 // depth
+
+        register(context, COARSE_DIRT_PATCH_KEY, Feature.DISK,
+                new DiskConfiguration(
+                        RuleBasedBlockStateProvider.simple(Blocks.COARSE_DIRT),
+                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
+                        UniformInt.of(2, 5),
                         2));
 
+        register(context, ROOTED_DIRT_PATCH_KEY, Feature.DISK,
+                new DiskConfiguration(
+                        RuleBasedBlockStateProvider.simple(Blocks.ROOTED_DIRT),
+                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
+                        UniformInt.of(1, 3),
+                        1));
     }
 
     private static BlockPredicate cattailsPlacementPredicate() {

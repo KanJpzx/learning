@@ -23,6 +23,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BIRCH_KEY = registerKey("birch");
     public static final ResourceKey<PlacedFeature> CATTAILS_KEY = registerKey("cattails");
     public static final ResourceKey<PlacedFeature> FOREST_MOSS_KEY = registerKey("forest_moss_patch");
+    public static final ResourceKey<PlacedFeature> COARSE_DIRT_PATCH_KEY = registerKey("coarse_dirt_patch");
+    public static final ResourceKey<PlacedFeature> ROOTED_DIRT_PATCH_KEY = registerKey("rooted_dirt_patch");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -47,13 +49,18 @@ public class ModPlacedFeatures {
                                 VerticalAnchor.absolute(62)),
                         BiomeFilter.biome()));
 
+
         register(context, FOREST_MOSS_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FOREST_MOSS_KEY),
-                List.of(
-                        CountPlacement.of(3), // ← patches attempted per chunk — THIS is your "chaotic" knob, turn it down
-                        InSquarePlacement.spread(),
-                        HeightmapPlacement.onHeightmap(Heightmap.Types.WORLD_SURFACE_WG), // finds the actual surface, not a random spot
-                        BiomeFilter.biome()
-                ));
+                List.of(CountPlacement.of(2), InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+        register(context, COARSE_DIRT_PATCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.COARSE_DIRT_PATCH_KEY),
+                List.of(CountPlacement.of(3), InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+        register(context, ROOTED_DIRT_PATCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROOTED_DIRT_PATCH_KEY),
+                List.of(CountPlacement.of(1), InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
     }
 
