@@ -204,7 +204,9 @@ public class ModBiomeModifiers {
 
         context.register(COARSE_DIRT_PATCH_KEY,
                 new BiomeModifiers.AddFeaturesBiomeModifier(
-                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(List.of(
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.SWAMP))),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.COARSE_DIRT_PATCH_KEY)),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS));
 

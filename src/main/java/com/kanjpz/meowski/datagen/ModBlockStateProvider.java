@@ -151,9 +151,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.WILLOW_SAPLING.get(), models().cross("willow_sapling",
                 blockTexture(ModBlocks.WILLOW_SAPLING.get())).renderType("cutout"));
 
-        simpleBlockWithItem(
-                ModBlocks.FOREST_MOSS.get(),
-                cubeAll(ModBlocks.FOREST_MOSS.get()));
+
+        simpleBlockItem(ModBlocks.FOREST_MOSS.get(), cubeAll(ModBlocks.FOREST_MOSS.get()));
 
         simpleBlockItem(
                 ModBlocks.CATTAILS.get(),
@@ -201,38 +200,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     // It picks one, making cattails look randomly rotated.
                     return ConfiguredModel.builder()
 
-                            .modelFile(
-                                    models().getExistingFile(
-                                            modLoc("block/cattails")
-                                    )
-                            )
+                            .modelFile(models().getExistingFile(modLoc("block/cattails")))
                             .rotationY(0)
                             .nextModel()
-
-                            .modelFile(
-                                    models().getExistingFile(
-                                            modLoc("block/cattails")
-                                    )
-                            )
+                            .modelFile(models().getExistingFile(modLoc("block/cattails")))
                             .rotationY(90)
                             .nextModel()
-
-                            .modelFile(
-                                    models().getExistingFile(
-                                            modLoc("block/cattails")
-                                    )
-                            )
+                            .modelFile(models().getExistingFile(modLoc("block/cattails")))
                             .rotationY(180)
                             .nextModel()
-
-                            .modelFile(
-                                    models().getExistingFile(
-                                            modLoc("block/cattails")
-                                    )
-                            )
+                            .modelFile(models().getExistingFile(modLoc("block/cattails")))
                             .rotationY(270)
 
                             .build();
                 });
+        getVariantBuilder(ModBlocks.FOREST_MOSS.get())
+                .partialState()
+                .setModels(
+                        ConfiguredModel.builder()
+                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
+                                .rotationY(0)
+                                .nextModel()
+                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
+                                .rotationY(90)
+                                .nextModel()
+                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
+                                .rotationY(180)
+                                .nextModel()
+                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
+                                .rotationY(270)
+                                .build());
     }
 }

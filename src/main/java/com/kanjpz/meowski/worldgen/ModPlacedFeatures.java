@@ -34,7 +34,7 @@ public class ModPlacedFeatures {
                         ModBlocks.WILLOW_SAPLING.get()));
 
         register(context, OAK_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_KEY),
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.1f, 2),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
                         Blocks.OAK_SAPLING));
 
         register(context, BIRCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BIRCH_KEY),

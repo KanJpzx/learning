@@ -20,10 +20,14 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.NoiseThresholdProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraft.world.level.material.Fluids;
+
+import java.util.List;
 
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILLOW_KEY = registerKey("willow");
@@ -33,6 +37,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_MOSS_KEY = registerKey("forest_moss_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> COARSE_DIRT_PATCH_KEY = registerKey("coarse_dirt_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ROOTED_DIRT_PATCH_KEY = registerKey("rooted_dirt_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_FLOOR_MIX_KEY = registerKey("forest_floor_mix");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> VANILLA_OAK_OVERRIDE =
             ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.withDefaultNamespace("oak"));
@@ -96,8 +101,8 @@ public class ModConfiguredFeatures {
                         BlockStateProvider.simple(Blocks.BIRCH_LEAVES.defaultBlockState()),
 
                         new AcaciaFoliagePlacer(
-                                ConstantInt.of(3), // radius — bigger = wider flat top
-                                ConstantInt.of(0)),// offset
+                                ConstantInt.of(2), // radius — bigger = wider flat top
+                                ConstantInt.of(1)),// offset
                         new TwoLayersFeatureSize(0, 0, 0))
                         .ignoreVines()
                         .build());
@@ -128,10 +133,18 @@ public class ModConfiguredFeatures {
 
         register(context, ROOTED_DIRT_PATCH_KEY, Feature.DISK,
                 new DiskConfiguration(
+
                         RuleBasedBlockStateProvider.simple(Blocks.ROOTED_DIRT),
                         BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
                         UniformInt.of(1, 3),
                         1));
+
+        register(context, FOREST_FLOOR_MIX_KEY, Feature.DISK,
+                new DiskConfiguration(
+                        forestFloorMixProvider(),   // ← THIS is what makes "no usages" go away
+                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
+                        UniformInt.of(5, 9),
+                        2));
     }
 
     private static BlockPredicate cattailsPlacementPredicate() {
@@ -148,6 +161,20 @@ public class ModConfiguredFeatures {
                                 Blocks.MUD,
                                 Blocks.GRAVEL)));
 
+
+    }
+    private static RuleBasedBlockStateProvider forestFloorMixProvider() {
+        NoiseThresholdProvider mossNoise = new NoiseThresholdProvider(
+                2345L,
+                new NormalNoise.NoiseParameters(-4, 1.0, 1.0),
+                0.4F,
+                0.55F,
+                0.7F,
+                Blocks.GRASS_BLOCK.defaultBlockState(),
+                List.of(Blocks.COARSE_DIRT.defaultBlockState()),
+                List.of(ModBlocks.FOREST_MOSS.get().defaultBlockState()));
+
+        return new RuleBasedBlockStateProvider(mossNoise, List.of());
     }
 
     private static BlockPredicate mossPlacementPredicate() {
