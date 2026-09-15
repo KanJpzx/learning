@@ -102,7 +102,7 @@ public class ModConfiguredFeatures {
 
                         new AcaciaFoliagePlacer(
                                 ConstantInt.of(2), // radius — bigger = wider flat top
-                                ConstantInt.of(1)),// offset
+                                ConstantInt.of(2)),// offset
                         new TwoLayersFeatureSize(0, 0, 0))
                         .ignoreVines()
                         .build());
@@ -143,7 +143,7 @@ public class ModConfiguredFeatures {
                 new DiskConfiguration(
                         forestFloorMixProvider(),   // ← THIS is what makes "no usages" go away
                         BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
-                        UniformInt.of(5, 9),
+                        UniformInt.of(5, 8),
                         2));
     }
 

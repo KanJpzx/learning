@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "meowskis:block/forest_moss"
-    }
+    "": [
+      {
+        "model": "meowskis:block/forest_moss"
+      },
+      {
+        "model": "meowskis:block/forest_moss",
+        "y": 90
+      },
+      {
+        "model": "meowskis:block/forest_moss",
+        "y": 180
+      },
+      {
+        "model": "meowskis:block/forest_moss",
+        "y": 270
+      }
+    ]
   }
 }

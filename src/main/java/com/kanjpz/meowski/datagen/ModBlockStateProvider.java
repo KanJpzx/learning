@@ -152,6 +152,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 blockTexture(ModBlocks.WILLOW_SAPLING.get())).renderType("cutout"));
 
 
+        getVariantBuilder(ModBlocks.FOREST_MOSS.get())
+                .partialState()
+                .setModels(
+                        ConfiguredModel.builder()
+                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
+                                .rotationY(0)
+                                .nextModel()
+                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
+                                .rotationY(90)
+                                .nextModel()
+                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
+                                .rotationY(180)
+                                .nextModel()
+                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
+                                .rotationY(270)
+                                .build());
+
         simpleBlockItem(ModBlocks.FOREST_MOSS.get(), cubeAll(ModBlocks.FOREST_MOSS.get()));
 
         simpleBlockItem(
@@ -214,21 +231,5 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
                             .build();
                 });
-        getVariantBuilder(ModBlocks.FOREST_MOSS.get())
-                .partialState()
-                .setModels(
-                        ConfiguredModel.builder()
-                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
-                                .rotationY(0)
-                                .nextModel()
-                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
-                                .rotationY(90)
-                                .nextModel()
-                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
-                                .rotationY(180)
-                                .nextModel()
-                                .modelFile(cubeAll(ModBlocks.FOREST_MOSS.get()))
-                                .rotationY(270)
-                                .build());
     }
 }
