@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "minecraft:forest",
-  "features": "meowskis:rooted_dirt_patch",
-  "step": "local_modifications"
-}

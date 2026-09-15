@@ -3,6 +3,8 @@ package com.kanjpz.meowski.datagen;
 import com.kanjpz.meowski.meowski;
 import com.kanjpz.meowski.worldgen.ModBiomeModifiers;
 import com.kanjpz.meowski.worldgen.ModConfiguredFeatures;
+import com.kanjpz.meowski.worldgen.ModNoiseGeneratorSettings;
+import com.kanjpz.meowski.worldgen.ModNoises;
 import com.kanjpz.meowski.worldgen.ModPlacedFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -18,7 +20,9 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
-            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap);
+            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap)
+            .add(Registries.NOISE, ModNoises::bootstrap)
+            .add(Registries.NOISE_SETTINGS, ModNoiseGeneratorSettings::bootstrap);
 
     public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(meowski.MOD_ID));

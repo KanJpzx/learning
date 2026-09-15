@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": [
-    "minecraft:forest",
-    "minecraft:swamp"
-  ],
-  "features": "meowskis:coarse_dirt_patch",
-  "step": "local_modifications"
-}

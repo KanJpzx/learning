@@ -119,42 +119,6 @@ public class ModConfiguredFeatures {
                                         BlockStateProvider.simple(ModBlocks.CATTAILS.get())),
                                 BlockPredicateFilter.forPredicate(cattailsPlacementPredicate()))));
 
-        register(context, FOREST_MOSS_KEY, Feature.DISK,
-                new DiskConfiguration(
-                        RuleBasedBlockStateProvider.simple(ModBlocks.FOREST_MOSS.get()),
-                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK),
-                        UniformInt.of(2, 4), // radius
-                        1));                 // depth
-
-        register(context, COARSE_DIRT_PATCH_KEY, Feature.DISK,
-                new DiskConfiguration(
-                        RuleBasedBlockStateProvider.simple(Blocks.COARSE_DIRT),
-                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
-                        UniformInt.of(1, 2),
-                        2));
-
-        register(context, ROOTED_DIRT_PATCH_KEY, Feature.DISK,
-                new DiskConfiguration(
-
-                        RuleBasedBlockStateProvider.simple(Blocks.ROOTED_DIRT),
-                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
-                        UniformInt.of(1, 3),
-                        2));
-
-        register(context, MUD_PATCH_KEY, Feature.DISK,
-                new DiskConfiguration(
-
-                        RuleBasedBlockStateProvider.simple(Blocks.MUD),
-                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
-                        UniformInt.of(1, 3),
-                        2));
-
-        register(context, FOREST_FLOOR_MIX_KEY, Feature.DISK,
-                new DiskConfiguration(
-                        forestFloorMixProvider(),   // ← THIS is what makes "no usages" go away
-                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
-                        UniformInt.of(5, 8),
-                        2));
     }
 
     private static BlockPredicate cattailsPlacementPredicate() {
@@ -173,19 +137,7 @@ public class ModConfiguredFeatures {
 
 
     }
-    private static RuleBasedBlockStateProvider forestFloorMixProvider() {
-        NoiseThresholdProvider mossNoise = new NoiseThresholdProvider(
-                2345L,
-                new NormalNoise.NoiseParameters(-4, 1.0, 1.0),
-                0.4F,
-                0.55F,
-                0.7F,
-                Blocks.GRASS_BLOCK.defaultBlockState(),
-                List.of(Blocks.COARSE_DIRT.defaultBlockState()),
-                List.of(ModBlocks.FOREST_MOSS.get().defaultBlockState()));
 
-        return new RuleBasedBlockStateProvider(mossNoise, List.of());
-    }
 
     private static BlockPredicate mossPlacementPredicate() {
         return BlockPredicate.allOf(
