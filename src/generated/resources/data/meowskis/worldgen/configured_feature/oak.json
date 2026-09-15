@@ -10,13 +10,13 @@
     },
     "foliage_placer": {
       "type": "minecraft:cherry_foliage_placer",
-      "corner_hole_chance": 0.75,
+      "corner_hole_chance": 0.45,
       "hanging_leaves_chance": 0.3,
-      "hanging_leaves_extension_chance": 0.6,
+      "hanging_leaves_extension_chance": 0.45,
       "height": 4,
-      "offset": 1,
+      "offset": 2,
       "radius": 4,
-      "wide_bottom_layer_hole_chance": 0.75
+      "wide_bottom_layer_hole_chance": 0.45
     },
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
@@ -39,9 +39,9 @@
     },
     "trunk_placer": {
       "type": "minecraft:fancy_trunk_placer",
-      "base_height": 9,
+      "base_height": 10,
       "height_rand_a": 5,
-      "height_rand_b": 2
+      "height_rand_b": 3
     },
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",

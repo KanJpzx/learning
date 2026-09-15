@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:forest",
+  "features": "meowskis:forest_moss_patch",
+  "step": "vegetal_decoration"
+}

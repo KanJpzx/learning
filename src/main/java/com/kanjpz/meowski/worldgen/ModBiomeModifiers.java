@@ -95,12 +95,20 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> WILLOW_KEY =
             registerKey("willow");
 
+
     public static final ResourceKey<BiomeModifier> OAK_KEY =
             registerKey("oak");
     public static final ResourceKey<BiomeModifier> BIRCH_KEY =
             registerKey("birch");
+
+
     public static final ResourceKey<BiomeModifier> CATTAILS_KEY =
             registerKey("cattails");
+
+
+    public static final ResourceKey<BiomeModifier> FOREST_MOSS_KEY =
+            registerKey("forest_moss_patch");
+
 
     public static final ResourceKey<BiomeModifier> REMOVE_SWAMP_TREES =
             registerKey("remove_swamp_trees");
@@ -183,6 +191,14 @@ public class ModBiomeModifiers {
                         GenerationStep.Decoration.VEGETAL_DECORATION));
 
 
+
+        context.register(FOREST_MOSS_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_MOSS_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
+
         // -----------------------------------------------------
         // CHANGE SWAMP GRASS COLOR
         // -----------------------------------------------------
@@ -196,9 +212,10 @@ public class ModBiomeModifiers {
                         SWAMP_GRASS_COLOR,
                         SWAMP_FOLIAGE_COLOR,
                         SWAMP_WATER_COLOR,
-                        SWAMP_WATER_FOG_COLOR
-                )
-        );
+                        SWAMP_WATER_FOG_COLOR));
+
+
+
     }
 
     private static HolderSet<Biome> cattailBiomes(HolderGetter<Biome> biomes) {
