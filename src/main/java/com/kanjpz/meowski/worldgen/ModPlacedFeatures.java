@@ -25,6 +25,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> FOREST_MOSS_KEY = registerKey("forest_moss_patch");
     public static final ResourceKey<PlacedFeature> COARSE_DIRT_PATCH_KEY = registerKey("coarse_dirt_patch");
     public static final ResourceKey<PlacedFeature> ROOTED_DIRT_PATCH_KEY = registerKey("rooted_dirt_patch");
+    public static final ResourceKey<PlacedFeature> FOREST_FLOOR_MIX_KEY = registerKey("forest_floor_mix");
+    public static final ResourceKey<PlacedFeature> MUD_PATCH_KEY = registerKey("mud_patch");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -34,7 +36,7 @@ public class ModPlacedFeatures {
                         ModBlocks.WILLOW_SAPLING.get()));
 
         register(context, OAK_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_KEY),
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.2f, 3),
                         Blocks.OAK_SAPLING));
 
         register(context, BIRCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BIRCH_KEY),
@@ -55,11 +57,20 @@ public class ModPlacedFeatures {
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
         register(context, COARSE_DIRT_PATCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.COARSE_DIRT_PATCH_KEY),
-                List.of(CountPlacement.of(3), InSquarePlacement.spread(),
+                List.of(CountPlacement.of(1), InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
         register(context, ROOTED_DIRT_PATCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROOTED_DIRT_PATCH_KEY),
                 List.of(CountPlacement.of(1), InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+        register(context, MUD_PATCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MUD_PATCH_KEY),
+                List.of(CountPlacement.of(1), InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+
+        register(context, FOREST_FLOOR_MIX_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FOREST_FLOOR_MIX_KEY),
+                List.of(CountPlacement.of(2), InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
     }

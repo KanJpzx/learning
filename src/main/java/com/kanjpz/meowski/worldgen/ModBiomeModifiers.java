@@ -113,6 +113,13 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ROOTED_DIRT_PATCH_KEY =
             registerKey("rooted_dirt_patch");
 
+    public static final ResourceKey<BiomeModifier> MUD_PATCH_KEY =
+            registerKey("mud_patch");
+
+
+    public static final ResourceKey<BiomeModifier> FOREST_FLOOR_MIX_KEY =
+            registerKey("forest_floor_mix");
+
 
     public static final ResourceKey<BiomeModifier> REMOVE_SWAMP_TREES =
             registerKey("remove_swamp_trees");
@@ -210,10 +217,23 @@ public class ModBiomeModifiers {
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.COARSE_DIRT_PATCH_KEY)),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS));
 
+        context.register(MUD_PATCH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.SWAMP)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.MUD_PATCH_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+
         context.register(ROOTED_DIRT_PATCH_KEY,
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ROOTED_DIRT_PATCH_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+
+
+        context.register(FOREST_FLOOR_MIX_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_FLOOR_MIX_KEY)),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS));
 
 

@@ -38,6 +38,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> COARSE_DIRT_PATCH_KEY = registerKey("coarse_dirt_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ROOTED_DIRT_PATCH_KEY = registerKey("rooted_dirt_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_FLOOR_MIX_KEY = registerKey("forest_floor_mix");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MUD_PATCH_KEY = registerKey("mud_patch");
+
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> VANILLA_OAK_OVERRIDE =
             ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.withDefaultNamespace("oak"));
@@ -109,7 +111,7 @@ public class ModConfiguredFeatures {
 
         register(context, CATTAILS_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        14,
+                        10,
                         6,
                         0,
                         PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK,
@@ -120,15 +122,15 @@ public class ModConfiguredFeatures {
         register(context, FOREST_MOSS_KEY, Feature.DISK,
                 new DiskConfiguration(
                         RuleBasedBlockStateProvider.simple(ModBlocks.FOREST_MOSS.get()),
-                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
+                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK),
                         UniformInt.of(2, 4), // radius
-                        2));                 // depth
+                        1));                 // depth
 
         register(context, COARSE_DIRT_PATCH_KEY, Feature.DISK,
                 new DiskConfiguration(
                         RuleBasedBlockStateProvider.simple(Blocks.COARSE_DIRT),
                         BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
-                        UniformInt.of(2, 5),
+                        UniformInt.of(1, 2),
                         2));
 
         register(context, ROOTED_DIRT_PATCH_KEY, Feature.DISK,
@@ -137,7 +139,15 @@ public class ModConfiguredFeatures {
                         RuleBasedBlockStateProvider.simple(Blocks.ROOTED_DIRT),
                         BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
                         UniformInt.of(1, 3),
-                        1));
+                        2));
+
+        register(context, MUD_PATCH_KEY, Feature.DISK,
+                new DiskConfiguration(
+
+                        RuleBasedBlockStateProvider.simple(Blocks.MUD),
+                        BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.DIRT),
+                        UniformInt.of(1, 3),
+                        2));
 
         register(context, FOREST_FLOOR_MIX_KEY, Feature.DISK,
                 new DiskConfiguration(
