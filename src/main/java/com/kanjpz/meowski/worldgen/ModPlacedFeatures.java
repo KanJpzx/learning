@@ -22,6 +22,11 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> OAK_KEY = registerKey("oak");
     public static final ResourceKey<PlacedFeature> BIRCH_KEY = registerKey("birch");
     public static final ResourceKey<PlacedFeature> CATTAILS_KEY = registerKey("cattails");
+    public static final ResourceKey<PlacedFeature> FOREST_FLOOR_MIX_KEY = registerKey("forest_floor_mix");
+    public static final ResourceKey<PlacedFeature> FOREST_MOSS_PATCH_KEY = registerKey("forest_moss_patch");
+    public static final ResourceKey<PlacedFeature> PODZOL_PATCH_KEY = registerKey("podzol_patch");
+    public static final ResourceKey<PlacedFeature> FOREST_MOSS_CARPET_KEY = registerKey("forest_moss_carpet_patch");
+    public static final ResourceKey<PlacedFeature> BLUE_BERRY_BUSH_KEY = registerKey("blue_berry_bush_patch");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -39,13 +44,36 @@ public class ModPlacedFeatures {
                         Blocks.BIRCH_SAPLING));
 
         register(context, CATTAILS_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CATTAILS_KEY),
-                List.of(CountPlacement.of(2),
+                List.of(CountPlacement.of(1),
                         InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(
                                 VerticalAnchor.absolute(62),
                                 VerticalAnchor.absolute(62)),
                         BiomeFilter.biome()));
 
+        register(context, FOREST_FLOOR_MIX_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FOREST_FLOOR_MIX_KEY),
+                List.of(CountPlacement.of(3), // was 1 — much more common now
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+        register(context, FOREST_MOSS_PATCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FOREST_MOSS_PATCH_KEY),
+                List.of(CountPlacement.of(2), // occasional distinct moss clumps
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+        register(context, PODZOL_PATCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PODZOL_PATCH_KEY),
+                List.of(CountPlacement.of(2), // occasional distinct moss clumps
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+        register(context, FOREST_MOSS_CARPET_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FOREST_MOSS_CARPET_KEY),
+                List.of(CountPlacement.of(3),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()));
+        register(context, BLUE_BERRY_BUSH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLUE_BERRY_BUSH_KEY),
+                List.of(CountPlacement.of(1), // one small patch per chunk — rare, like a special find
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

@@ -63,6 +63,15 @@ public class ModBlocks {
                                     .sound(SoundType.MOSS)
                                     .speedFactor(0.65F)));
 
+    public static final DeferredBlock<ForestMossCarpetBlock> FOREST_MOSS_CARPET =
+            registerBlock(
+                    "forest_moss_carpet",
+                    () -> new ForestMossCarpetBlock(
+                            BlockBehaviour.Properties
+                                    .ofFullCopy(Blocks.MOSS_CARPET)
+                                    .noCollission()
+                                    .noOcclusion()));
+
     public static final DeferredBlock<CatTailsBlock> CATTAILS =
             registerBlock(
                     "cattails",

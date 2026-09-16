@@ -23,6 +23,7 @@ import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 
 import java.util.List;
 
@@ -119,6 +120,19 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> SWAMP_COLORS_KEY =
             registerKey("swamp_color");
 
+    public static final ResourceKey<BiomeModifier> FOREST_FLOOR_MIX_KEY =
+            registerKey("forest_floor_mix");
+    public static final ResourceKey<BiomeModifier> FOREST_MOSS_PATCH_KEY =
+            registerKey("forest_moss_patch");
+    public static final ResourceKey<BiomeModifier> PODZOL_PATCH_KEY =
+            registerKey("podzol_patch");
+    public static final ResourceKey<BiomeModifier> FOREST_MOSS_CARPET_KEY =
+            registerKey("forest_moss_carpet_patch");
+    public static final ResourceKey<BiomeModifier> BLUE_BERRY_BUSH_KEY =
+            registerKey("blue_berry_bush_patch");
+    public static final ResourceKey<BiomeModifier>
+            FOREST_UNDERGROWTH_KEY = registerKey("forest_undergrowth");
+
 
     // =========================================================
     // REGISTER THE CUSTOM CODEC
@@ -188,6 +202,48 @@ public class ModBiomeModifiers {
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CATTAILS_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(FOREST_FLOOR_MIX_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_FLOOR_MIX_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+
+        context.register(FOREST_MOSS_PATCH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_MOSS_PATCH_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+        context.register(PODZOL_PATCH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PODZOL_PATCH_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+
+        context.register(FOREST_MOSS_CARPET_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_MOSS_CARPET_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+        context.register(BLUE_BERRY_BUSH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLUE_BERRY_BUSH_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(FOREST_UNDERGROWTH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
+                                placedFeatures.getOrThrow(VegetationPlacements.BROWN_MUSHROOM_NORMAL),
+                                placedFeatures.getOrThrow(VegetationPlacements.RED_MUSHROOM_NORMAL)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
 
 
 
@@ -204,12 +260,9 @@ public class ModBiomeModifiers {
         // CHANGE SWAMP GRASS COLOR
         // -----------------------------------------------------
 
-        context.register(
-                SWAMP_COLORS_KEY,
+        context.register(SWAMP_COLORS_KEY,
                 new SwampColorsModifier(
-                        HolderSet.direct(
-                                biomes.getOrThrow(Biomes.SWAMP)
-                        ),
+                        HolderSet.direct(biomes.getOrThrow(Biomes.SWAMP)),
                         SWAMP_GRASS_COLOR,
                         SWAMP_FOLIAGE_COLOR,
                         SWAMP_WATER_COLOR,

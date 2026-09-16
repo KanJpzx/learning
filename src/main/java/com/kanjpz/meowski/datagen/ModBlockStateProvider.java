@@ -169,6 +169,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                                 .rotationY(270)
                                 .build());
 
+        simpleBlockWithItem(
+                ModBlocks.FOREST_MOSS_CARPET.get(),
+                models().withExistingParent("forest_moss_carpet", mcLoc("block/carpet"))
+                        .texture("wool", blockTexture(ModBlocks.FOREST_MOSS.get())));
+
         simpleBlockItem(ModBlocks.FOREST_MOSS.get(), cubeAll(ModBlocks.FOREST_MOSS.get()));
 
         simpleBlockItem(
