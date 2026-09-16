@@ -2,6 +2,8 @@ package com.kanjpz.meowski.worldgen;
 
 import com.kanjpz.meowski.block.ModBlocks;
 import com.kanjpz.meowski.meowski;
+import com.kanjpz.meowski.worldgen.feature.BoulderConfiguration;
+import com.kanjpz.meowski.worldgen.feature.ModFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -17,15 +19,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BushFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.RandomSpreadFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.NoiseThresholdProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraft.world.level.material.Fluids;
@@ -46,6 +52,9 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> PODZOL_PATCH_KEY = registerKey("podzol_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_MOSS_CARPET_KEY = registerKey("forest_moss_carpet_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLUE_BERRY_BUSH_KEY = registerKey("blue_berry_bush_patch");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BOULDER_KEY = registerKey("boulder");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_BOULDER_KEY = registerKey("large_boulder");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> VANILLA_OAK_OVERRIDE =
@@ -99,23 +108,25 @@ public class ModConfiguredFeatures {
                                 3,
                                 1),
                         BlockStateProvider.simple(Blocks.BIRCH_LEAVES.defaultBlockState()),
-                        new AcaciaFoliagePlacer(
-                                ConstantInt.of(2),
-                                ConstantInt.of(2)),
+                        new RandomSpreadFoliagePlacer(
+                                ConstantInt.of(2),  // radius
+                                ConstantInt.of(5),  // offset
+                                ConstantInt.of(4),  // foliageHeight
+                                150),                // leafPlacementAttempts — higher = denser leaf scatter
                         new TwoLayersFeatureSize(0, 0, 0))
                         .ignoreVines()
                         .build());
 
         register(context, BUSH_KEY, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.OAK_LOG.defaultBlockState()),
-                        new FancyTrunkPlacer(
-                                1,
-                                1,
-                                1),
+                        new StraightTrunkPlacer(
+                                1,  // baseHeight   — minimum trunk height
+                                0,  // heightRandA  — adds 0-to-this extra height (roll #1)
+                                0), // heightRandB  — adds 0-to-this extra height (roll #2, stacked with A)
                         BlockStateProvider.simple(Blocks.OAK_LEAVES.defaultBlockState()),
                         new AcaciaFoliagePlacer(
-                                ConstantInt.of(1),
-                                ConstantInt.of(2)),
+                                ConstantInt.of(2),
+                                ConstantInt.of(0)),
                         new TwoLayersFeatureSize(0, 0, 0))
                         .ignoreVines()
                         .build());
@@ -183,6 +194,18 @@ public class ModConfiguredFeatures {
                                                 BlockPredicate.matchesBlocks(Blocks.AIR),
                                                 BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), Blocks.GRASS_BLOCK))))));
 
+        register(context, BOULDER_KEY, ModFeatures.BOULDER.get(),
+                new BoulderConfiguration(
+                        boulderStateProvider(),
+                        UniformInt.of(2, 3),   // radius per lump — small-to-medium
+                        UniformInt.of(2, 3))); // lumps fused together
+
+        register(context, LARGE_BOULDER_KEY, ModFeatures.BOULDER.get(),
+                new BoulderConfiguration(
+                        boulderStateProvider(),
+                        UniformInt.of(3, 4),   // noticeably bigger
+                        UniformInt.of(2, 3)));
+
     }
 
     private static BlockPredicate cattailsPlacementPredicate() {
@@ -198,6 +221,32 @@ public class ModConfiguredFeatures {
                                 Blocks.CLAY,
                                 Blocks.MUD,
                                 Blocks.GRAVEL)));
+    }
+
+
+    private static WeightedStateProvider boulderStateProvider() {
+        return new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                        .add(Blocks.STONE.defaultBlockState(), 65)
+                        .add(Blocks.ANDESITE.defaultBlockState(), 35)
+                        .build());
+
+    }
+    private static BlockPredicate clearOfWaterPredicate() {
+        return BlockPredicate.allOf(
+                // the ground right here must not be water/a fluid at all
+                BlockPredicate.not(BlockPredicate.matchesFluids(Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(BlockPos.ZERO.below(), Fluids.WATER)),
+                // check a ring several blocks out — rejects anywhere close enough
+                // to a pond/lake/river edge that the boulder would hang over it
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(5, 0, 0), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(-5, 0, 0), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(0, 0, 5), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(0, 0, -5), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(3, 0, 3), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(-3, 0, -3), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(3, 0, -3), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(-3, 0, 3), Fluids.WATER)));
     }
 
     private static WeightedStateProvider forestFloorWeightedProvider() {

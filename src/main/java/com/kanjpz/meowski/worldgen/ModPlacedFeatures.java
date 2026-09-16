@@ -2,6 +2,7 @@ package com.kanjpz.meowski.worldgen;
 
 import com.kanjpz.meowski.block.ModBlocks;
 import com.kanjpz.meowski.meowski;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -14,20 +15,31 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.material.Fluids;
 
 import java.util.List;
+
+
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> WILLOW_KEY = registerKey("willow");
     public static final ResourceKey<PlacedFeature> OAK_KEY = registerKey("oak");
     public static final ResourceKey<PlacedFeature> BIRCH_KEY = registerKey("birch");
+
     public static final ResourceKey<PlacedFeature> BUSH_KEY = registerKey("bush");
     public static final ResourceKey<PlacedFeature> CATTAILS_KEY = registerKey("cattails");
+
     public static final ResourceKey<PlacedFeature> FOREST_FLOOR_MIX_KEY = registerKey("forest_floor_mix");
     public static final ResourceKey<PlacedFeature> FOREST_MOSS_PATCH_KEY = registerKey("forest_moss_patch");
     public static final ResourceKey<PlacedFeature> PODZOL_PATCH_KEY = registerKey("podzol_patch");
     public static final ResourceKey<PlacedFeature> FOREST_MOSS_CARPET_KEY = registerKey("forest_moss_carpet_patch");
+
     public static final ResourceKey<PlacedFeature> BLUE_BERRY_BUSH_KEY = registerKey("blue_berry_bush_patch");
+
+    public static final ResourceKey<PlacedFeature> BOULDER_KEY = registerKey("boulder");
+    public static final ResourceKey<PlacedFeature> LARGE_BOULDER_KEY = registerKey("large_boulder");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -79,11 +91,39 @@ public class ModPlacedFeatures {
                 List.of(CountPlacement.of(1), // one small patch per chunk — rare, like a special find
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+        register(context, BOULDER_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BOULDER_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(40),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BlockPredicateFilter.forPredicate(clearOfWaterPredicate()),
+                        BiomeFilter.biome()));
+
+        register(context, LARGE_BOULDER_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.LARGE_BOULDER_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(150),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BlockPredicateFilter.forPredicate(clearOfWaterPredicate()),
+                        BiomeFilter.biome()));
+    }
+    private static BlockPredicate clearOfWaterPredicate() {
+        return BlockPredicate.allOf(
+                BlockPredicate.not(BlockPredicate.matchesFluids(Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(BlockPos.ZERO.below(), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(5, 0, 0), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(-5, 0, 0), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(0, 0, 5), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(0, 0, -5), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(3, 0, 3), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(-3, 0, -3), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(3, 0, -3), Fluids.WATER)),
+                BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(-3, 0, 3), Fluids.WATER)));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(meowski.MOD_ID, name));
     }
+
 
     private static void register(BootstrapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
                                  List<PlacementModifier> modifiers) {

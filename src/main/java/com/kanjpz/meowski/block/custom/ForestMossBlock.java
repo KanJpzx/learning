@@ -16,7 +16,7 @@ public class ForestMossBlock extends Block {
             simpleCodec(ForestMossBlock::new);
 
     private static final VoxelShape COLLISION_SHAPE =
-            Block.box(0, 0, 0, 16, 14, 16);
+            Block.box(0, 0, 0, 16, 16, 16);
 
     public ForestMossBlock(BlockBehaviour.Properties properties) {
         super(properties);

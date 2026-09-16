@@ -1,0 +1,32 @@
+{
+  "type": "meowskis:boulder",
+  "config": {
+    "lumps": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 3,
+      "min_inclusive": 1
+    },
+    "radius": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 2,
+      "min_inclusive": 1
+    },
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:stone"
+          },
+          "weight": 65
+        },
+        {
+          "data": {
+            "Name": "minecraft:andesite"
+          },
+          "weight": 35
+        }
+      ]
+    }
+  }
+}

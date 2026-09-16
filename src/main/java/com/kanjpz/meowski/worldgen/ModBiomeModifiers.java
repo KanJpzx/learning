@@ -12,6 +12,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.Biomes;
@@ -136,6 +137,9 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> FOREST_UNDERGROWTH_KEY =
             registerKey("forest_undergrowth");
 
+    public static final ResourceKey<BiomeModifier> BOULDER_KEY = registerKey("boulder");
+    public static final ResourceKey<BiomeModifier> LARGE_BOULDER_KEY = registerKey("large_boulder");
+
 
     // =========================================================
     // REGISTER THE CUSTOM CODEC
@@ -249,9 +253,38 @@ public class ModBiomeModifiers {
                                 placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
                                 placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
                                 placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
+                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
                                 placedFeatures.getOrThrow(VegetationPlacements.BROWN_MUSHROOM_NORMAL),
                                 placedFeatures.getOrThrow(VegetationPlacements.RED_MUSHROOM_NORMAL)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
+
+
+        context.register(BOULDER_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(
+                                biomes.getOrThrow(Biomes.PLAINS),
+                                biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                                biomes.getOrThrow(Biomes.BIRCH_FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BOULDER_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+
+        context.register(LARGE_BOULDER_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(
+                                biomes.getOrThrow(Biomes.PLAINS),
+                                biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                                biomes.getOrThrow(Biomes.BIRCH_FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LARGE_BOULDER_KEY)),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS));
 
 
 

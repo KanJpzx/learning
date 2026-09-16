@@ -4,6 +4,7 @@ import com.kanjpz.meowski.block.ModBlocks;
 import com.kanjpz.meowski.item.ModCreativeModeTabs;
 import com.kanjpz.meowski.item.ModItems;
 import com.kanjpz.meowski.worldgen.ModBiomeModifiers;
+import com.kanjpz.meowski.worldgen.feature.ModFeatures;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
@@ -42,6 +43,7 @@ public class meowski {
         ModBiomeModifiers.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModFeatures.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
