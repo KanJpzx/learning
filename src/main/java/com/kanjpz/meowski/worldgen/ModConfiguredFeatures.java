@@ -98,8 +98,8 @@ public class ModConfiguredFeatures {
                 new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.BIRCH_LOG.defaultBlockState()),
                         new FancyTrunkPlacer(
                                 9,
-                                5,
-                                2),
+                                3,
+                                1),
                         BlockStateProvider.simple(Blocks.BIRCH_LEAVES.defaultBlockState()),
 
                         new AcaciaFoliagePlacer(

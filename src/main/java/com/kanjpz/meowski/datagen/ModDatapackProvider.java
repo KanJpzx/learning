@@ -25,6 +25,7 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.NOISE_SETTINGS, ModNoiseGeneratorSettings::bootstrap);
 
     public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of(meowski.MOD_ID));
+        super(output, registries, BUILDER, Set.of(meowski.MOD_ID, "minecraft"));
     }
 }
+ 
