@@ -33,13 +33,13 @@ public class ModSurfaceRules {
 
         return SurfaceRules.sequence(
                 SurfaceRules.ifTrue(
-                        SurfaceRules.noiseCondition(ModNoises.FOREST_MOSS_PATCHES, 0.55, 1.0),
+                        SurfaceRules.noiseCondition(ModNoises.FOREST_MOSS_PATCHES, 0.0, 0.0),
                         moss),
                 SurfaceRules.ifTrue(
-                        SurfaceRules.noiseCondition(ModNoises.COARSE_DIRT_PATCHES, 0.6, 1.0),
+                        SurfaceRules.noiseCondition(ModNoises.COARSE_DIRT_PATCHES, 0.0, 0.0),
                         coarseDirt),
                 SurfaceRules.ifTrue(
-                        SurfaceRules.noiseCondition(ModNoises.ROOTED_DIRT_SPECKLE, 0.75, 1.0),
+                        SurfaceRules.noiseCondition(ModNoises.ROOTED_DIRT_SPECKLE, 0.0, 0.0),
                         rootedDirt)
         );
     }

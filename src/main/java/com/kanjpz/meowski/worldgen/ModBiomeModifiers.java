@@ -107,6 +107,7 @@ public class ModBiomeModifiers {
 
 
 
+
     public static final ResourceKey<BiomeModifier> REMOVE_SWAMP_TREES =
             registerKey("remove_swamp_trees");
     public static final ResourceKey<BiomeModifier> REMOVE_OAK_TREES =
@@ -186,6 +187,8 @@ public class ModBiomeModifiers {
                         cattailBiomes(biomes),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CATTAILS_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
+
+
 
 
 

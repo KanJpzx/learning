@@ -1,7 +1,7 @@
 {
   "aquifers_enabled": true,
   "default_block": {
-    "Name": "minecraft:stone"
+    "Name": "minecraft:diamond_block"
   },
   "default_fluid": {
     "Name": "minecraft:water",
@@ -401,8 +401,8 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:noise_threshold",
-                "max_threshold": 1.0,
-                "min_threshold": 0.55,
+                "max_threshold": 0.0,
+                "min_threshold": 0.0,
                 "noise": "meowskis:forest_moss_patches"
               },
               "then_run": {
@@ -416,8 +416,8 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:noise_threshold",
-                "max_threshold": 1.0,
-                "min_threshold": 0.6,
+                "max_threshold": 0.0,
+                "min_threshold": 0.0,
                 "noise": "meowskis:coarse_dirt_patches"
               },
               "then_run": {
@@ -431,8 +431,8 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:noise_threshold",
-                "max_threshold": 1.0,
-                "min_threshold": 0.75,
+                "max_threshold": 0.0,
+                "min_threshold": 0.0,
                 "noise": "meowskis:rooted_dirt_speckle"
               },
               "then_run": {

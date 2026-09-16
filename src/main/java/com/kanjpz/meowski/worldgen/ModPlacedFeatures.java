@@ -23,7 +23,6 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BIRCH_KEY = registerKey("birch");
     public static final ResourceKey<PlacedFeature> CATTAILS_KEY = registerKey("cattails");
 
-
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
