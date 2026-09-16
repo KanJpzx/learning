@@ -37,6 +37,7 @@ public class ModConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_KEY = registerKey("oak");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_KEY = registerKey("birch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BUSH_KEY = registerKey("bush");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CATTAILS_KEY = registerKey("cattails");
 
@@ -105,6 +106,24 @@ public class ModConfiguredFeatures {
                         .ignoreVines()
                         .build());
 
+        register(context, BUSH_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.OAK_LOG.defaultBlockState()),
+                        new FancyTrunkPlacer(
+                                1,
+                                1,
+                                1),
+                        BlockStateProvider.simple(Blocks.OAK_LEAVES.defaultBlockState()),
+                        new AcaciaFoliagePlacer(
+                                ConstantInt.of(1),
+                                ConstantInt.of(2)),
+                        new TwoLayersFeatureSize(0, 0, 0))
+                        .ignoreVines()
+                        .build());
+
+
+
+
+
         register(context, CATTAILS_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
                         20, 6, 0,
@@ -125,8 +144,8 @@ public class ModConfiguredFeatures {
 // Moss — its own feature, tight radius so tries overlap into an actual clump
         register(context, FOREST_MOSS_PATCH_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        60, // lots of tries...
-                        2,  // ...concentrated in a small area = solid-looking patch, not scatter
+                        100, // lots of tries...
+                        3,  // ...concentrated in a small area = solid-looking patch, not scatter
                         2,
                         PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
@@ -136,8 +155,8 @@ public class ModConfiguredFeatures {
 
         register(context, PODZOL_PATCH_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        60, // lots of tries...
-                        2,  // ...concentrated in a small area = solid-looking patch, not scatter
+                        100, // lots of tries...
+                        3,  // ...concentrated in a small area = solid-looking patch, not scatter
                         2,
                         PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
@@ -147,7 +166,7 @@ public class ModConfiguredFeatures {
 
         register(context, FOREST_MOSS_CARPET_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        40, 4, 2, // moderate tries/spread = partial coverage, not blanket
+                        60, 4, 2, // moderate tries/spread = partial coverage, not blanket
                         PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
                                         BlockStateProvider.simple(ModBlocks.FOREST_MOSS_CARPET.get())),
@@ -155,7 +174,7 @@ public class ModConfiguredFeatures {
 
         register(context, BLUE_BERRY_BUSH_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        6, 4, 3, // fewer tries than vanilla's usual ~32 = noticeably rarer
+                        6, 2, 2, // fewer tries than vanilla's usual ~32 = noticeably rarer
                         PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(
                                         BlockStateProvider.simple(ModBlocks.BLUE_BERRY_BUSH.get())),
@@ -185,8 +204,8 @@ public class ModConfiguredFeatures {
         return new WeightedStateProvider(
                 SimpleWeightedRandomList.<BlockState>builder()
                         .add(Blocks.GRASS_BLOCK.defaultBlockState(), 60)
-                        .add(Blocks.COARSE_DIRT.defaultBlockState(), 20)
-                        .add(Blocks.ROOTED_DIRT.defaultBlockState(), 20)
+                        .add(Blocks.COARSE_DIRT.defaultBlockState(), 30)
+                        .add(Blocks.ROOTED_DIRT.defaultBlockState(), 30)
                         .build());
     }
 

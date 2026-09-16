@@ -102,6 +102,9 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> BIRCH_KEY =
             registerKey("birch");
 
+    public static final ResourceKey<BiomeModifier> BUSH_KEY =
+            registerKey("bush");
+
 
     public static final ResourceKey<BiomeModifier> CATTAILS_KEY =
             registerKey("cattails");
@@ -130,8 +133,8 @@ public class ModBiomeModifiers {
             registerKey("forest_moss_carpet_patch");
     public static final ResourceKey<BiomeModifier> BLUE_BERRY_BUSH_KEY =
             registerKey("blue_berry_bush_patch");
-    public static final ResourceKey<BiomeModifier>
-            FOREST_UNDERGROWTH_KEY = registerKey("forest_undergrowth");
+    public static final ResourceKey<BiomeModifier> FOREST_UNDERGROWTH_KEY =
+            registerKey("forest_undergrowth");
 
 
     // =========================================================
@@ -194,6 +197,12 @@ public class ModBiomeModifiers {
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         HolderSet.direct(List.of(biomes.getOrThrow(Biomes.FOREST))),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BIRCH_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(BUSH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(List.of(biomes.getOrThrow(Biomes.FOREST))),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BUSH_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(CATTAILS_KEY,

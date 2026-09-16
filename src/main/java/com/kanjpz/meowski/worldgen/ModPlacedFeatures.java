@@ -21,6 +21,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> WILLOW_KEY = registerKey("willow");
     public static final ResourceKey<PlacedFeature> OAK_KEY = registerKey("oak");
     public static final ResourceKey<PlacedFeature> BIRCH_KEY = registerKey("birch");
+    public static final ResourceKey<PlacedFeature> BUSH_KEY = registerKey("bush");
     public static final ResourceKey<PlacedFeature> CATTAILS_KEY = registerKey("cattails");
     public static final ResourceKey<PlacedFeature> FOREST_FLOOR_MIX_KEY = registerKey("forest_floor_mix");
     public static final ResourceKey<PlacedFeature> FOREST_MOSS_PATCH_KEY = registerKey("forest_moss_patch");
@@ -42,6 +43,10 @@ public class ModPlacedFeatures {
         register(context, BIRCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BIRCH_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1f, 1),
                         Blocks.BIRCH_SAPLING));
+
+        register(context, BUSH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BUSH_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1f, 1),
+                        Blocks.OAK_SAPLING));
 
         register(context, CATTAILS_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CATTAILS_KEY),
                 List.of(CountPlacement.of(1),

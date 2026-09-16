@@ -41,7 +41,7 @@
       ]
     },
     "tries": 6,
-    "xz_spread": 4,
-    "y_spread": 3
+    "xz_spread": 2,
+    "y_spread": 2
   }
 }
