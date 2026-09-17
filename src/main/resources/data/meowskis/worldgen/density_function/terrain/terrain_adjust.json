@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:add",
-  "argument1": {
-    "type": "minecraft:add",
-    "argument1": "meowskis:terrain/ocean_depth",
-    "argument2": "meowskis:terrain/river_depth"
-  },
-  "argument2": "meowskis:terrain/lowland_lift"
-}

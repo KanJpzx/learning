@@ -213,7 +213,7 @@ public class ModConfiguredFeatures {
 
         register(context, DENSE_FOREST_GRASS_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        30, 8, 0, // way more tries than vanilla's grass — this is what actually gives carpet-like coverage
+                        15, 8, 0, // way more tries than vanilla's grass — this is what actually gives carpet-like coverage
                         PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(denseGrassWeightedProvider()),
                                 BlockPredicateFilter.forPredicate(

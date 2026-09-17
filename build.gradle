@@ -128,7 +128,7 @@ configurations {
 
 dependencies {
 
-
+    implementation "maven.modrinth:lWDHr9jE:2v0qIjyc" // Tectonic 3.0, NeoForge 1.21.1
 
     // Lithostitched - required by Tectonic
     implementation "maven.modrinth:XaDC71GB:qPASucBM"
