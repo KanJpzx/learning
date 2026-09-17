@@ -61,21 +61,21 @@ Example mod description.
 # The coremods config file path is not configurable and is always loaded from META-INF/coremods.json
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.meowskis]]
+[[dependencies.meowski]]
 modId="neoforge"
 type="required"
 versionRange="[21.1.248,)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.meowskis]]
+[[dependencies.meowski]]
 modId="lithostitched"
 type="required"
-versionRange="[...]"
+versionRange="[1.8.0,)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.meowskis]]
+[[dependencies.meowski]]
 modId="tectonic"
 type="required"
 versionRange="[3.0.17,)"
