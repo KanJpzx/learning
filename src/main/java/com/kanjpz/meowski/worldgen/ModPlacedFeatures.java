@@ -121,7 +121,7 @@ public class ModPlacedFeatures {
                         BiomeFilter.biome()));
 
         register(context, DENSE_TALL_GRASS_KEY, vanillaConfiguredFeatures.getOrThrow(VegetationFeatures.PATCH_TALL_GRASS),
-                List.of(CountPlacement.of(UniformInt.of(2, 4)), // 6-12 patches per chunk, randomized
+                List.of(CountPlacement.of(UniformInt.of(1, 3)), // 6-12 patches per chunk, randomized
                         InSquarePlacement.spread(),               // random XZ within the chunk
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome()));
