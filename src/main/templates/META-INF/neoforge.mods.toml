@@ -79,14 +79,7 @@ Example mod description.
     # Side this dependency is applied on - BOTH, CLIENT, or SERVER
     side="BOTH"
 
-# Here's another dependency
-[[dependencies.${mod_id}]]
-modId="tectonic"
-type="required"
-reason="Meowskis uses Tectonic as its terrain generation foundation."
-versionRange="[3.0.26,3.1)"
-ordering="AFTER"
-side="BOTH"
+
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't

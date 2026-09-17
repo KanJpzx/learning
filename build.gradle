@@ -128,8 +128,7 @@ configurations {
 
 dependencies {
 
-    // Tectonic - terrain generation
-    implementation "maven.modrinth:lWDHr9jE:vNrkxC3z"
+
 
     // Lithostitched - required by Tectonic
     implementation "maven.modrinth:XaDC71GB:qPASucBM"
