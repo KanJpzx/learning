@@ -9,11 +9,14 @@
       }
     },
     "foliage_placer": {
-      "type": "minecraft:random_spread_foliage_placer",
-      "foliage_height": 4,
-      "leaf_placement_attempts": 50,
-      "offset": 0,
-      "radius": 3
+      "type": "minecraft:cherry_foliage_placer",
+      "corner_hole_chance": 0.45,
+      "hanging_leaves_chance": 0.1,
+      "hanging_leaves_extension_chance": 0.25,
+      "height": 4,
+      "offset": 2,
+      "radius": 4,
+      "wide_bottom_layer_hole_chance": 0.45
     },
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",

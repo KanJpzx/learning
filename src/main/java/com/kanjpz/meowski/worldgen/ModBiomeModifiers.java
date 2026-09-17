@@ -137,8 +137,13 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> FOREST_UNDERGROWTH_KEY =
             registerKey("forest_undergrowth");
 
-    public static final ResourceKey<BiomeModifier> BOULDER_KEY = registerKey("boulder");
-    public static final ResourceKey<BiomeModifier> LARGE_BOULDER_KEY = registerKey("large_boulder");
+    public static final ResourceKey<BiomeModifier> BOULDER_KEY =
+            registerKey("boulder");
+    public static final ResourceKey<BiomeModifier> LARGE_BOULDER_KEY =
+            registerKey("large_boulder");
+
+    public static final ResourceKey<BiomeModifier> DENSE_FOREST_GRASS_KEY =
+            registerKey("dense_forest_grass");
 
 
     // =========================================================
@@ -243,25 +248,6 @@ public class ModBiomeModifiers {
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLUE_BERRY_BUSH_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
 
-        context.register(FOREST_UNDERGROWTH_KEY,
-                new BiomeModifiers.AddFeaturesBiomeModifier(
-                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
-                        HolderSet.direct(
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_TALL_GRASS),
-                                placedFeatures.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN),
-                                placedFeatures.getOrThrow(VegetationPlacements.BROWN_MUSHROOM_NORMAL),
-                                placedFeatures.getOrThrow(VegetationPlacements.RED_MUSHROOM_NORMAL)),
-                        GenerationStep.Decoration.VEGETAL_DECORATION));
 
 
         context.register(BOULDER_KEY,
@@ -285,6 +271,23 @@ public class ModBiomeModifiers {
                                 biomes.getOrThrow(Biomes.BIRCH_FOREST)),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.LARGE_BOULDER_KEY)),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+
+        context.register(FOREST_UNDERGROWTH_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(
+                                placedFeatures.getOrThrow(ModPlacedFeatures.DENSE_TALL_GRASS_KEY),
+                                placedFeatures.getOrThrow(ModPlacedFeatures.DENSE_LARGE_FERN_KEY),
+                                placedFeatures.getOrThrow(VegetationPlacements.BROWN_MUSHROOM_NORMAL),
+                                placedFeatures.getOrThrow(VegetationPlacements.RED_MUSHROOM_NORMAL)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(DENSE_FOREST_GRASS_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.DENSE_FOREST_GRASS_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
 
 
 

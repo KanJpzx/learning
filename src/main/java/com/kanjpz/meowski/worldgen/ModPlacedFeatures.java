@@ -6,10 +6,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -41,8 +43,14 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BOULDER_KEY = registerKey("boulder");
     public static final ResourceKey<PlacedFeature> LARGE_BOULDER_KEY = registerKey("large_boulder");
 
+    public static final ResourceKey<PlacedFeature> DENSE_FOREST_GRASS_KEY = registerKey("dense_forest_grass");
+    public static final ResourceKey<PlacedFeature> DENSE_TALL_GRASS_KEY = registerKey("dense_tall_grass");
+    public static final ResourceKey<PlacedFeature> DENSE_LARGE_FERN_KEY = registerKey("dense_large_fern");
+
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+        var vanillaConfiguredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
         register(context, WILLOW_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.WILLOW_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(2,0.2f, 1),
@@ -57,7 +65,7 @@ public class ModPlacedFeatures {
                         Blocks.BIRCH_SAPLING));
 
         register(context, BUSH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BUSH_KEY),
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1f, 1),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(2, 0.1f, 2),
                         Blocks.OAK_SAPLING));
 
         register(context, CATTAILS_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CATTAILS_KEY),
@@ -104,6 +112,24 @@ public class ModPlacedFeatures {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BlockPredicateFilter.forPredicate(clearOfWaterPredicate()),
+                        BiomeFilter.biome()));
+
+        register(context, DENSE_FOREST_GRASS_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DENSE_FOREST_GRASS_KEY),
+                List.of(CountPlacement.of(1), // only need one call — 96 tries already covers the whole chunk
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()));
+
+        register(context, DENSE_TALL_GRASS_KEY, vanillaConfiguredFeatures.getOrThrow(VegetationFeatures.PATCH_TALL_GRASS),
+                List.of(CountPlacement.of(UniformInt.of(2, 4)), // 6-12 patches per chunk, randomized
+                        InSquarePlacement.spread(),               // random XZ within the chunk
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()));
+
+        register(context, DENSE_LARGE_FERN_KEY, vanillaConfiguredFeatures.getOrThrow(VegetationFeatures.PATCH_LARGE_FERN),
+                List.of(CountPlacement.of(UniformInt.of(1, 3)),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome()));
     }
     private static BlockPredicate clearOfWaterPredicate() {

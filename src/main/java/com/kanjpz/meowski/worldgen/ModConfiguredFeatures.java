@@ -53,6 +53,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_MOSS_CARPET_KEY = registerKey("forest_moss_carpet_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLUE_BERRY_BUSH_KEY = registerKey("blue_berry_bush_patch");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DENSE_FOREST_GRASS_KEY = registerKey("dense_forest_grass");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> BOULDER_KEY = registerKey("boulder");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_BOULDER_KEY = registerKey("large_boulder");
 
@@ -108,11 +110,14 @@ public class ModConfiguredFeatures {
                                 3,
                                 1),
                         BlockStateProvider.simple(Blocks.BIRCH_LEAVES.defaultBlockState()),
-                        new RandomSpreadFoliagePlacer(
-                                ConstantInt.of(2),  // radius
-                                ConstantInt.of(5),  // offset
-                                ConstantInt.of(4),  // foliageHeight
-                                150),                // leafPlacementAttempts — higher = denser leaf scatter
+                        new CherryFoliagePlacer(
+                                ConstantInt.of(4),
+                                ConstantInt.of(2),
+                                ConstantInt.of(4),
+                                0.45F,
+                                0.65F,
+                                0.1F,
+                                0.25F),          // leafPlacementAttempts — higher = denser leaf scatter
                         new TwoLayersFeatureSize(0, 0, 0))
                         .ignoreVines()
                         .build());
@@ -206,6 +211,15 @@ public class ModConfiguredFeatures {
                         UniformInt.of(3, 4),   // noticeably bigger
                         UniformInt.of(2, 3)));
 
+        register(context, DENSE_FOREST_GRASS_KEY, Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        96, 8, 0, // way more tries than vanilla's grass — this is what actually gives carpet-like coverage
+                        PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(denseGrassWeightedProvider()),
+                                BlockPredicateFilter.forPredicate(
+                                        BlockPredicate.allOf(
+                                                BlockPredicate.matchesBlocks(Blocks.AIR),
+                                                BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), Blocks.GRASS_BLOCK))))));
     }
 
     private static BlockPredicate cattailsPlacementPredicate() {
@@ -221,6 +235,15 @@ public class ModConfiguredFeatures {
                                 Blocks.CLAY,
                                 Blocks.MUD,
                                 Blocks.GRAVEL)));
+
+    }
+
+    private static WeightedStateProvider denseGrassWeightedProvider() {
+        return new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                        .add(Blocks.SHORT_GRASS.defaultBlockState(), 75)
+                        .add(Blocks.FERN.defaultBlockState(), 25)
+                        .build());
     }
 
 
@@ -230,6 +253,7 @@ public class ModConfiguredFeatures {
                         .add(Blocks.STONE.defaultBlockState(), 65)
                         .add(Blocks.ANDESITE.defaultBlockState(), 35)
                         .build());
+
 
     }
     private static BlockPredicate clearOfWaterPredicate() {
