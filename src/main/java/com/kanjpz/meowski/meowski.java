@@ -6,6 +6,7 @@ import com.kanjpz.meowski.item.ModItems;
 import com.kanjpz.meowski.worldgen.ModBiomeModifiers;
 import com.kanjpz.meowski.worldgen.feature.ModFeatures;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -30,6 +31,8 @@ public class meowski {
 
     public meowski(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
+        TectonicConfigPatcher.applyDesiredSettings();
+
         modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in.

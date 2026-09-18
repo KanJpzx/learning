@@ -11,11 +11,14 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -144,6 +147,16 @@ public class ModPlacedFeatures {
                 BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(-3, 0, -3), Fluids.WATER)),
                 BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(3, 0, -3), Fluids.WATER)),
                 BlockPredicate.not(BlockPredicate.matchesFluids(new BlockPos(-3, 0, 3), Fluids.WATER)));
+    }
+    private static WeightedStateProvider boulderStateProvider() {
+        return new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                        .add(Blocks.STONE.defaultBlockState(), 40)
+                        .add(Blocks.ANDESITE.defaultBlockState(), 20)
+                        .add(Blocks.COAL_ORE.defaultBlockState(), 15)
+                        .add(Blocks.IRON_ORE.defaultBlockState(), 15)
+                        .add(Blocks.COPPER_ORE.defaultBlockState(), 10)
+                        .build());
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
