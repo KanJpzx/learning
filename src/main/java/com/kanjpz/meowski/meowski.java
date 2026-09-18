@@ -71,4 +71,9 @@ public class meowski {
     public void onServerStarting(ServerStartingEvent event) {
 
     }
+    // ADD THIS RIGHT HERE, after onServerStarting's closing brace:
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        ClimateDebugCommand.register(event.getDispatcher());
+    }
 }

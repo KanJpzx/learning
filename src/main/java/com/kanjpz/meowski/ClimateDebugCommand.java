@@ -1,4 +1,4 @@
-package com.kanjpz.meowski.command;
+package com.kanjpz.meowski;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
