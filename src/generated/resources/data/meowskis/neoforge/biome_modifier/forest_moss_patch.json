@@ -1,6 +1,10 @@
 {
   "type": "neoforge:add_features",
-  "biomes": "minecraft:forest",
+  "biomes": [
+    "minecraft:forest",
+    "minecraft:birch_forest",
+    "minecraft:taiga"
+  ],
   "features": "meowskis:forest_moss_patch",
   "step": "local_modifications"
 }

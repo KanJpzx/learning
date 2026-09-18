@@ -32,6 +32,8 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> WILLOW_KEY = registerKey("willow");
     public static final ResourceKey<PlacedFeature> OAK_KEY = registerKey("oak");
     public static final ResourceKey<PlacedFeature> BIRCH_KEY = registerKey("birch");
+    public static final ResourceKey<PlacedFeature> TAIGA_KEY = registerKey("taiga");
+    public static final ResourceKey<PlacedFeature> BIRCH_FOREST_KEY = registerKey("birch_forest");
 
     public static final ResourceKey<PlacedFeature> BUSH_KEY = registerKey("bush");
     public static final ResourceKey<PlacedFeature> CATTAILS_KEY = registerKey("cattails");
@@ -62,6 +64,14 @@ public class ModPlacedFeatures {
         register(context, OAK_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.2f, 3),
                         Blocks.OAK_SAPLING));
+
+        register(context, BIRCH_FOREST_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BIRCH_FOREST_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.2f, 3),
+                        Blocks.BIRCH_SAPLING));
+
+        register(context, TAIGA_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TAIGA_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.2f, 3),
+                        Blocks.SPRUCE_SAPLING));
 
         register(context, BIRCH_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BIRCH_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1f, 1),

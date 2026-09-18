@@ -102,6 +102,10 @@ public class ModBiomeModifiers {
             registerKey("oak");
     public static final ResourceKey<BiomeModifier> BIRCH_KEY =
             registerKey("birch");
+    public static final ResourceKey<BiomeModifier> TAIGA_KEY =
+            registerKey("taiga");
+    public static final ResourceKey<BiomeModifier> BIRCH_FOREST_KEY =
+            registerKey("birch_forest");
 
     public static final ResourceKey<BiomeModifier> BUSH_KEY =
             registerKey("bush");
@@ -117,6 +121,10 @@ public class ModBiomeModifiers {
             registerKey("remove_swamp_trees");
     public static final ResourceKey<BiomeModifier> REMOVE_OAK_TREES =
             registerKey("remove_oak_trees");
+    public static final ResourceKey<BiomeModifier> REMOVE_TAIGA_TREES =
+            registerKey("remove_taiga_trees");
+    public static final ResourceKey<BiomeModifier> REMOVE_BIRCH_TREES =
+            registerKey("remove_birch_trees");
 
 
 
@@ -183,6 +191,16 @@ public class ModBiomeModifiers {
                         HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
                         HolderSet.direct(placedFeatures.getOrThrow(VegetationPlacements.TREES_BIRCH_AND_OAK))));
 
+        context.register(REMOVE_BIRCH_TREES,
+                BiomeModifiers.RemoveFeaturesBiomeModifier.allSteps(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.BIRCH_FOREST)),
+                        HolderSet.direct(placedFeatures.getOrThrow(VegetationPlacements.TREES_BIRCH))));
+
+        context.register(REMOVE_TAIGA_TREES,
+                BiomeModifiers.RemoveFeaturesBiomeModifier.allSteps(
+                        HolderSet.direct(biomes.getOrThrow(Biomes.TAIGA)),
+                        HolderSet.direct(placedFeatures.getOrThrow(VegetationPlacements.TREES_TAIGA))));
+
 
 
 
@@ -208,6 +226,18 @@ public class ModBiomeModifiers {
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BIRCH_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(TAIGA_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(List.of(biomes.getOrThrow(Biomes.TAIGA))),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TAIGA_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(BIRCH_FOREST_KEY,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        HolderSet.direct(List.of(biomes.getOrThrow(Biomes.BIRCH_FOREST))),
+                        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BIRCH_FOREST_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
         context.register(BUSH_KEY,
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         HolderSet.direct(List.of(biomes.getOrThrow(Biomes.FOREST))),
@@ -222,24 +252,36 @@ public class ModBiomeModifiers {
 
         context.register(FOREST_FLOOR_MIX_KEY,
                 new BiomeModifiers.AddFeaturesBiomeModifier(
-                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                                biomes.getOrThrow(Biomes.TAIGA)),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_FLOOR_MIX_KEY)),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS));
 
         context.register(FOREST_MOSS_PATCH_KEY,
                 new BiomeModifiers.AddFeaturesBiomeModifier(
-                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                                biomes.getOrThrow(Biomes.TAIGA)),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_MOSS_PATCH_KEY)),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS));
         context.register(PODZOL_PATCH_KEY,
                 new BiomeModifiers.AddFeaturesBiomeModifier(
-                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                                biomes.getOrThrow(Biomes.TAIGA)),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PODZOL_PATCH_KEY)),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS));
 
         context.register(FOREST_MOSS_CARPET_KEY,
                 new BiomeModifiers.AddFeaturesBiomeModifier(
-                        HolderSet.direct(biomes.getOrThrow(Biomes.FOREST)),
+                        HolderSet.direct(
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                                biomes.getOrThrow(Biomes.TAIGA)),
                         HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOREST_MOSS_CARPET_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION));
         context.register(BLUE_BERRY_BUSH_KEY,

@@ -22,10 +22,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BushFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.RandomSpreadFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.NoiseThresholdProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
@@ -43,6 +40,8 @@ public class ModConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_KEY = registerKey("oak");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_KEY = registerKey("birch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> TAIGA_KEY = registerKey("taiga");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BIRCH_FOREST_KEY = registerKey("birch_forest");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BUSH_KEY = registerKey("bush");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CATTAILS_KEY = registerKey("cattails");
@@ -118,6 +117,40 @@ public class ModConfiguredFeatures {
                                 0.65F,
                                 0.1F,
                                 0.25F),          // leafPlacementAttempts — higher = denser leaf scatter
+                        new TwoLayersFeatureSize(0, 0, 0))
+                        .ignoreVines()
+                        .build());
+
+        register(context, BIRCH_FOREST_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.BIRCH_LOG.defaultBlockState()),
+                        new FancyTrunkPlacer(
+                                11,
+                                3,
+                                1),
+                        BlockStateProvider.simple(Blocks.BIRCH_LEAVES.defaultBlockState()),
+                        new CherryFoliagePlacer(
+                                ConstantInt.of(4),
+                                ConstantInt.of(2),
+                                ConstantInt.of(4),
+                                0.45F,
+                                0.65F,
+                                0.1F,
+                                0.25F),          // leafPlacementAttempts — higher = denser leaf scatter
+                        new TwoLayersFeatureSize(0, 0, 0))
+                        .ignoreVines()
+                        .build());
+
+        register(context, TAIGA_KEY, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.SPRUCE_LOG.defaultBlockState()),
+                        new StraightTrunkPlacer(
+                                15,  // baseHeight   — minimum trunk height
+                                3,  // heightRandA  — adds 0-to-this extra height (roll #1)
+                                1), // heightRandB  — adds 0-to-this extra height (roll #2, stacked with A)
+                        BlockStateProvider.simple(Blocks.SPRUCE_LEAVES.defaultBlockState()),
+                        new SpruceFoliagePlacer(
+                                ConstantInt.of(3),         // radius
+                                ConstantInt.of(3),         // offset
+                                UniformInt.of(4, 7)),      // trunkHeight — taller = longer cone        // leafPlacementAttempts — higher = denser leaf scatter
                         new TwoLayersFeatureSize(0, 0, 0))
                         .ignoreVines()
                         .build());
@@ -213,7 +246,7 @@ public class ModConfiguredFeatures {
 
         register(context, DENSE_FOREST_GRASS_KEY, Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        15, 8, 0, // way more tries than vanilla's grass — this is what actually gives carpet-like coverage
+                        8, 8, 0, // way more tries than vanilla's grass — this is what actually gives carpet-like coverage
                         PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK,
                                 new SimpleBlockConfiguration(denseGrassWeightedProvider()),
                                 BlockPredicateFilter.forPredicate(
